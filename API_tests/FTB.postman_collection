@@ -1,0 +1,1757 @@
+{
+	"info": {
+		"_postman_id": "5bf8af66-4bc0-4fcf-9825-e825c3486106",
+		"name": "FTB",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
+		"_exporter_id": "22589652"
+	},
+	"item": [
+		{
+			"name": "http://192.168.40.100:8168/api/v0/flights",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": {
+						"password": "john123",
+						"username": "john"
+					}
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "host",
+						"value": "192.168.40.100"
+					},
+					{
+						"key": "accept",
+						"value": "*/*"
+					},
+					{
+						"key": "User-Agent",
+						"value": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0.0.0 YaBrowser/24.12.0.0 Safari/537.36"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"flightNumber\": \"@#$%^&*\",\r\n    \"departureAirportCode\": \"LED\",\r\n    \"destinationAirportCode\": \"YALA\",\r\n    \"departureDate\": \"2025-03-10\",\r\n    \"arrivalDate\": \"2025-03-11\",\r\n    \"departureTime\": \"07.18.38\",\r\n    \"arrivalTime\": \"10.34.59\",\r\n    \"gate\": \"8\",\r\n    \"status\": \"OPEN\",\r\n    \"flightCharge\": 666,\r\n    \"aircraftId\": 1\r\n}"
+				},
+				"url": "http://192.168.40.100:8168/api/v0/flights"
+			},
+			"response": [
+				{
+					"name": "code 201 введены все данные",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "host",
+								"value": "192.168.40.100"
+							},
+							{
+								"key": "accept",
+								"value": "*/*"
+							},
+							{
+								"key": "User-Agent",
+								"value": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0.0.0 YaBrowser/24.12.0.0 Safari/537.36"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"flightNumber\": \"O55PC99\",\r\n    \"departureAirportCode\": \"LED\",\r\n    \"destinationAirportCode\": \"YALA\",\r\n    \"departureDate\": \"2025-03-10\",\r\n    \"arrivalDate\": \"2025-03-11\",\r\n    \"departureTime\": \"07:18:38\",\r\n    \"arrivalTime\": \"10:34:59\",\r\n    \"gate\": \"5\",\r\n    \"status\": \"GATE CLOSED\",\r\n    \"flightCharge\": 325000,\r\n    \"aircraftId\": 1\r\n}"
+						},
+						"url": "{{base_url}}"
+					},
+					"status": "Created",
+					"code": 201,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "_FTB-flight",
+							"value": "It is soooo expensive to travel nowdays... ."
+						},
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "X-XSS-Protection",
+							"value": "1; mode=block"
+						},
+						{
+							"key": "Cache-Control",
+							"value": "no-cache, no-store, max-age=0, must-revalidate"
+						},
+						{
+							"key": "Pragma",
+							"value": "no-cache"
+						},
+						{
+							"key": "Expires",
+							"value": "0"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "SAMEORIGIN"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Date",
+							"value": "Sun, 12 Jan 2025 12:31:03 GMT"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=60"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"flightId\": 5755,\n    \"flightNumber\": \"O55PC99\",\n    \"departureAirportCode\": \"LED\",\n    \"destinationAirportCode\": \"YALA\",\n    \"departureDate\": [\n        2025,\n        3,\n        10\n    ],\n    \"arrivalDate\": [\n        2025,\n        3,\n        11\n    ],\n    \"departureTime\": \"07:18:38\",\n    \"arrivalTime\": \"10:34:59\",\n    \"gate\": \"5\",\n    \"status\": \"GATE CLOSED\",\n    \"flightCharge\": 325000,\n    \"aircraftId\": 1,\n    \"passengerIds\": [],\n    \"id\": 5755\n}"
+				},
+				{
+					"name": "code 201 повторное создание с теми же полями (присвоился другой id))",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "host",
+								"value": "192.168.40.100"
+							},
+							{
+								"key": "accept",
+								"value": "*/*"
+							},
+							{
+								"key": "User-Agent",
+								"value": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0.0.0 YaBrowser/24.12.0.0 Safari/537.36"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"flightNumber\": \"O55PC99\",\r\n    \"departureAirportCode\": \"LED\",\r\n    \"destinationAirportCode\": \"YALA\",\r\n    \"departureDate\": \"2025-03-10\",\r\n    \"arrivalDate\": \"2025-03-11\",\r\n    \"departureTime\": \"07:18:38\",\r\n    \"arrivalTime\": \"10:34:59\",\r\n    \"gate\": \"5\",\r\n    \"status\": \"GATE CLOSED\",\r\n    \"flightCharge\": 325000,\r\n    \"aircraftId\": 1\r\n}"
+						},
+						"url": "{{base_url}}"
+					},
+					"status": "Created",
+					"code": 201,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "_FTB-flight",
+							"value": "It is soooo expensive to travel nowdays... ."
+						},
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "X-XSS-Protection",
+							"value": "1; mode=block"
+						},
+						{
+							"key": "Cache-Control",
+							"value": "no-cache, no-store, max-age=0, must-revalidate"
+						},
+						{
+							"key": "Pragma",
+							"value": "no-cache"
+						},
+						{
+							"key": "Expires",
+							"value": "0"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "SAMEORIGIN"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Date",
+							"value": "Sun, 12 Jan 2025 12:36:56 GMT"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=60"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"flightId\": 5757,\n    \"flightNumber\": \"O55PC99\",\n    \"departureAirportCode\": \"LED\",\n    \"destinationAirportCode\": \"YALA\",\n    \"departureDate\": [\n        2025,\n        3,\n        10\n    ],\n    \"arrivalDate\": [\n        2025,\n        3,\n        11\n    ],\n    \"departureTime\": \"07:18:38\",\n    \"arrivalTime\": \"10:34:59\",\n    \"gate\": \"5\",\n    \"status\": \"GATE CLOSED\",\n    \"flightCharge\": 325000,\n    \"aircraftId\": 1,\n    \"passengerIds\": [],\n    \"id\": 5757\n}"
+				},
+				{
+					"name": "code 201 запрос без параметров gate и status",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "host",
+								"value": "192.168.40.100"
+							},
+							{
+								"key": "accept",
+								"value": "*/*"
+							},
+							{
+								"key": "User-Agent",
+								"value": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0.0.0 YaBrowser/24.12.0.0 Safari/537.36"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"flightNumber\": \"596AY\",\r\n    \"departureAirportCode\": \"AYKY\",\r\n    \"destinationAirportCode\": \"LBPD\",\r\n    \"departureDate\": \"2025-02-08\",\r\n    \"arrivalDate\": \"2025-02-09\",\r\n    \"departureTime\": \"10:55:46\",\r\n    \"arrivalTime\": \"18:34:28\",\r\n    \"flightCharge\": 325000,\r\n    \"aircraftId\": 1\r\n}"
+						},
+						"url": "{{base_url}}"
+					},
+					"status": "Created",
+					"code": 201,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "_FTB-flight",
+							"value": "It is soooo expensive to travel nowdays... ."
+						},
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "X-XSS-Protection",
+							"value": "1; mode=block"
+						},
+						{
+							"key": "Cache-Control",
+							"value": "no-cache, no-store, max-age=0, must-revalidate"
+						},
+						{
+							"key": "Pragma",
+							"value": "no-cache"
+						},
+						{
+							"key": "Expires",
+							"value": "0"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "SAMEORIGIN"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Date",
+							"value": "Sun, 12 Jan 2025 12:48:45 GMT"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=60"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"flightId\": 5758,\n    \"flightNumber\": \"596AY\",\n    \"departureAirportCode\": \"AYKY\",\n    \"destinationAirportCode\": \"LBPD\",\n    \"departureDate\": [\n        2025,\n        2,\n        8\n    ],\n    \"arrivalDate\": [\n        2025,\n        2,\n        9\n    ],\n    \"departureTime\": \"10:55:46\",\n    \"arrivalTime\": \"18:34:28\",\n    \"gate\": null,\n    \"status\": null,\n    \"flightCharge\": 325000,\n    \"aircraftId\": 1,\n    \"passengerIds\": [],\n    \"id\": 5758\n}"
+				},
+				{
+					"name": "code 201 запрос с параметрами null, кроме Date и aircraftId",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "host",
+								"value": "192.168.40.100"
+							},
+							{
+								"key": "accept",
+								"value": "*/*"
+							},
+							{
+								"key": "User-Agent",
+								"value": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0.0.0 YaBrowser/24.12.0.0 Safari/537.36"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"flightNumber\": \"null\",\r\n    \"departureAirportCode\": \"null\",\r\n    \"destinationAirportCode\": \"null\",\r\n    \"departureDate\": \"2025-03-10\",\r\n    \"arrivalDate\": \"2025-03-11\",\r\n    \"departureTime\": \"null\",\r\n    \"arrivalTime\": \"null\",\r\n    \"gate\": \"null\",\r\n    \"status\": \"null\",\r\n    \"flightCharge\": \"null\",\r\n    \"aircraftId\": 1\r\n}"
+						},
+						"url": "{{base_url}}"
+					},
+					"status": "Created",
+					"code": 201,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "X-XSS-Protection",
+							"value": "1; mode=block"
+						},
+						{
+							"key": "Cache-Control",
+							"value": "no-cache, no-store, max-age=0, must-revalidate"
+						},
+						{
+							"key": "Pragma",
+							"value": "no-cache"
+						},
+						{
+							"key": "Expires",
+							"value": "0"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "SAMEORIGIN"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Date",
+							"value": "Sun, 12 Jan 2025 12:57:00 GMT"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=60"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"flightId\": 5761,\n    \"flightNumber\": \"null\",\n    \"departureAirportCode\": \"null\",\n    \"destinationAirportCode\": \"null\",\n    \"departureDate\": [\n        2025,\n        3,\n        10\n    ],\n    \"arrivalDate\": [\n        2025,\n        3,\n        11\n    ],\n    \"departureTime\": \"null\",\n    \"arrivalTime\": \"null\",\n    \"gate\": \"null\",\n    \"status\": \"null\",\n    \"flightCharge\": 0,\n    \"aircraftId\": 1,\n    \"passengerIds\": [],\n    \"id\": 5761\n}"
+				},
+				{
+					"name": "code 201 запрос с некорректным форматом времени",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "host",
+								"value": "192.168.40.100"
+							},
+							{
+								"key": "accept",
+								"value": "*/*"
+							},
+							{
+								"key": "User-Agent",
+								"value": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0.0.0 YaBrowser/24.12.0.0 Safari/537.36"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"flightNumber\": \"O55PC99\",\r\n    \"departureAirportCode\": \"LED\",\r\n    \"destinationAirportCode\": \"YALA\",\r\n    \"departureDate\": \"2025-03-10\",\r\n    \"arrivalDate\": \"2025-03-11\",\r\n    \"departureTime\": \"673924\",\r\n    \"arrivalTime\": \"27.58.89\",\r\n    \"gate\": \"5\",\r\n    \"status\": \"GATE CLOSED\",\r\n    \"flightCharge\": 325000,\r\n    \"aircraftId\": 1\r\n}"
+						},
+						"url": "http://192.168.40.100:8168/api/v0/flights"
+					},
+					"status": "Created",
+					"code": 201,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "_FTB-flight",
+							"value": "It is soooo expensive to travel nowdays... ."
+						},
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "X-XSS-Protection",
+							"value": "1; mode=block"
+						},
+						{
+							"key": "Cache-Control",
+							"value": "no-cache, no-store, max-age=0, must-revalidate"
+						},
+						{
+							"key": "Pragma",
+							"value": "no-cache"
+						},
+						{
+							"key": "Expires",
+							"value": "0"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "SAMEORIGIN"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Date",
+							"value": "Mon, 13 Jan 2025 09:25:40 GMT"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=60"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"flightId\": 5775,\n    \"flightNumber\": \"O55PC99\",\n    \"departureAirportCode\": \"LED\",\n    \"destinationAirportCode\": \"YALA\",\n    \"departureDate\": [\n        2025,\n        3,\n        10\n    ],\n    \"arrivalDate\": [\n        2025,\n        3,\n        11\n    ],\n    \"departureTime\": \"673924\",\n    \"arrivalTime\": \"27.58.89\",\n    \"gate\": \"5\",\n    \"status\": \"GATE CLOSED\",\n    \"flightCharge\": 325000,\n    \"aircraftId\": 1,\n    \"passengerIds\": [],\n    \"id\": 5775\n}"
+				},
+				{
+					"name": "code 400 введено только обязательное поле flight_charge (по требованям БД)",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "host",
+								"value": "192.168.40.100"
+							},
+							{
+								"key": "accept",
+								"value": "*/*"
+							},
+							{
+								"key": "User-Agent",
+								"value": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0.0.0 YaBrowser/24.12.0.0 Safari/537.36"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"flightNumber\": \"null\",\r\n    \"departureAirportCode\": \"null\",\r\n    \"destinationAirportCode\": \"null\",\r\n    \"departureDate\": \"null\",\r\n    \"arrivalDate\": \"null\",\r\n    \"departureTime\": \"null\",\r\n    \"arrivalTime\": \"null\",\r\n    \"gate\": \"null\",\r\n    \"status\": \"null\",\r\n    \"flightCharge\": 18590,\r\n    \"aircraftId\": null\r\n}"
+						},
+						"url": "{{base_url}}"
+					},
+					"status": "Bad Request",
+					"code": 400,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "X-XSS-Protection",
+							"value": "1; mode=block"
+						},
+						{
+							"key": "Cache-Control",
+							"value": "no-cache, no-store, max-age=0, must-revalidate"
+						},
+						{
+							"key": "Pragma",
+							"value": "no-cache"
+						},
+						{
+							"key": "Expires",
+							"value": "0"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "SAMEORIGIN"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Date",
+							"value": "Sun, 12 Jan 2025 12:35:19 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "close"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"timestamp\": \"2025-01-12 12:35:19:197104608 +0000\",\n    \"status\": \"400 BAD_REQUEST - BAD, BAD REQUEST\",\n    \"message\": \"Validation Failed\",\n    \"details\": [\n        \"flightNumber | must not be blank\",\n        \"departureTime | must not be blank\",\n        \"departureAirportCode | must not be blank\",\n        \"arrivalTime | must not be blank\",\n        \"destinationAirportCode | must not be blank\"\n    ]\n}"
+				},
+				{
+					"name": "code 400 запрос без тела",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "host",
+								"value": "192.168.40.100"
+							},
+							{
+								"key": "accept",
+								"value": "*/*"
+							},
+							{
+								"key": "User-Agent",
+								"value": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0.0.0 YaBrowser/24.12.0.0 Safari/537.36"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": "{{base_url}}"
+					},
+					"status": "Bad Request",
+					"code": 400,
+					"_postman_previewlanguage": "plain",
+					"header": [
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "X-XSS-Protection",
+							"value": "1; mode=block"
+						},
+						{
+							"key": "Cache-Control",
+							"value": "no-cache, no-store, max-age=0, must-revalidate"
+						},
+						{
+							"key": "Pragma",
+							"value": "no-cache"
+						},
+						{
+							"key": "Expires",
+							"value": "0"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "SAMEORIGIN"
+						},
+						{
+							"key": "Content-Length",
+							"value": "0"
+						},
+						{
+							"key": "Date",
+							"value": "Sun, 12 Jan 2025 12:39:37 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "close"
+						}
+					],
+					"cookie": [],
+					"body": null
+				},
+				{
+					"name": "code 400 пустое тело запроса",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "host",
+								"value": "192.168.40.100"
+							},
+							{
+								"key": "accept",
+								"value": "*/*"
+							},
+							{
+								"key": "User-Agent",
+								"value": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0.0.0 YaBrowser/24.12.0.0 Safari/537.36"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\r\n}"
+						},
+						"url": "{{base_url}}"
+					},
+					"status": "Bad Request",
+					"code": 400,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "X-XSS-Protection",
+							"value": "1; mode=block"
+						},
+						{
+							"key": "Cache-Control",
+							"value": "no-cache, no-store, max-age=0, must-revalidate"
+						},
+						{
+							"key": "Pragma",
+							"value": "no-cache"
+						},
+						{
+							"key": "Expires",
+							"value": "0"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "SAMEORIGIN"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Date",
+							"value": "Sun, 12 Jan 2025 12:39:13 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "close"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"timestamp\": \"2025-01-12 12:39:13:470321938 +0000\",\n    \"status\": \"400 BAD_REQUEST - BAD, BAD REQUEST\",\n    \"message\": \"Validation Failed\",\n    \"details\": [\n        \"departureTime | must not be blank\",\n        \"destinationAirportCode | must not be blank\",\n        \"departureAirportCode | must not be blank\",\n        \"arrivalTime | must not be blank\",\n        \"flightNumber | must not be blank\"\n    ]\n}"
+				},
+				{
+					"name": "code 400 не позволяет создать рейс с прошедшей датой",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "host",
+								"value": "192.168.40.100"
+							},
+							{
+								"key": "accept",
+								"value": "*/*"
+							},
+							{
+								"key": "User-Agent",
+								"value": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0.0.0 YaBrowser/24.12.0.0 Safari/537.36"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"flightNumber\": \"null\",\r\n    \"departureAirportCode\": \"null\",\r\n    \"destinationAirportCode\": \"null\",\r\n    \"departureDate\": \"2025-01-11\",\r\n    \"arrivalDate\": \"2025-01-12\",\r\n    \"departureTime\": \"null\",\r\n    \"arrivalTime\": \"null\",\r\n    \"gate\": \"null\",\r\n    \"status\": \"null\",\r\n    \"flightCharge\": \"null\",\r\n    \"aircraftId\": 5\r\n}"
+						},
+						"url": "{{base_url}}"
+					},
+					"status": "Bad Request",
+					"code": 400,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "X-XSS-Protection",
+							"value": "1; mode=block"
+						},
+						{
+							"key": "Cache-Control",
+							"value": "no-cache, no-store, max-age=0, must-revalidate"
+						},
+						{
+							"key": "Pragma",
+							"value": "no-cache"
+						},
+						{
+							"key": "Expires",
+							"value": "0"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "SAMEORIGIN"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Date",
+							"value": "Mon, 13 Jan 2025 08:39:45 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "close"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"timestamp\": \"2025-01-13 08:39:45:778903617 +0000\",\n    \"status\": \"400 BAD_REQUEST - BAD, BAD REQUEST\",\n    \"message\": \"Validation Failed\",\n    \"details\": [\n        \"arrivalDate | must be a date in the present or in the future\",\n        \"departureDate | must be a date in the present or in the future\"\n    ]\n}"
+				},
+				{
+					"name": "code 500 запрос с без параметров Date и aircraftId",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "host",
+								"value": "192.168.40.100"
+							},
+							{
+								"key": "accept",
+								"value": "*/*"
+							},
+							{
+								"key": "User-Agent",
+								"value": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0.0.0 YaBrowser/24.12.0.0 Safari/537.36"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"flightNumber\": \"596AY\",\r\n    \"departureAirportCode\": \"AKKY\",\r\n    \"destinationAirportCode\": \"LBPD\",\r\n    \"departureTime\": \"10:55:46\",\r\n    \"arrivalTime\": \"18:34:28\",\r\n    \"flightCharge\": 325000\r\n}"
+						},
+						"url": "{{base_url}}"
+					},
+					"status": "Internal Server Error",
+					"code": 500,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "X-XSS-Protection",
+							"value": "1; mode=block"
+						},
+						{
+							"key": "Cache-Control",
+							"value": "no-cache, no-store, max-age=0, must-revalidate"
+						},
+						{
+							"key": "Pragma",
+							"value": "no-cache"
+						},
+						{
+							"key": "Expires",
+							"value": "0"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "SAMEORIGIN"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Date",
+							"value": "Sun, 12 Jan 2025 12:43:35 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "close"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"timestamp\": \"2025-01-12 12:43:35:685944565 +0000\",\n    \"status\": \"500 INTERNAL_SERVER_ERROR\",\n    \"message\": \"Server Error\",\n    \"details\": [\n        \"Cannot invoke \\\"java.time.LocalDate.isBefore(java.time.chrono.ChronoLocalDate)\\\" because the return value of \\\"com.aerotravel.flightticketbooking.model.dto.FlightDto.getArrivalDate()\\\" is null\"\n    ]\n}"
+				},
+				{
+					"name": "code 201 некорректный тип данных",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "host",
+								"value": "192.168.40.100"
+							},
+							{
+								"key": "accept",
+								"value": "*/*"
+							},
+							{
+								"key": "User-Agent",
+								"value": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0.0.0 YaBrowser/24.12.0.0 Safari/537.36"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"flightNumber\": \"?роп7$6\",\r\n    \"departureAirportCode\": \"LED\",\r\n    \"destinationAirportCode\": \"YALA\",\r\n    \"departureDate\": \"2025-03-10\",\r\n    \"arrivalDate\": \"2025-03-11\",\r\n    \"departureTime\": \"07:18:38\",\r\n    \"arrivalTime\": \"10:34:59\",\r\n    \"gate\": \"50000000000000&&&&@??\",\r\n    \"status\": \"hello\",\r\n    \"flightCharge\": 3250.00,\r\n    \"aircraftId\": 1\r\n}"
+						},
+						"url": "http://192.168.40.100:8168/api/v0/flights"
+					},
+					"status": "Created",
+					"code": 201,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "_FTB-flight",
+							"value": "It is soooo expensive to travel nowdays... ."
+						},
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "X-XSS-Protection",
+							"value": "1; mode=block"
+						},
+						{
+							"key": "Cache-Control",
+							"value": "no-cache, no-store, max-age=0, must-revalidate"
+						},
+						{
+							"key": "Pragma",
+							"value": "no-cache"
+						},
+						{
+							"key": "Expires",
+							"value": "0"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "SAMEORIGIN"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Date",
+							"value": "Tue, 14 Jan 2025 13:44:46 GMT"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=60"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"flightId\": 5789,\n    \"flightNumber\": \"?роп7$6\",\n    \"departureAirportCode\": \"LED\",\n    \"destinationAirportCode\": \"YALA\",\n    \"departureDate\": [\n        2025,\n        3,\n        10\n    ],\n    \"arrivalDate\": [\n        2025,\n        3,\n        11\n    ],\n    \"departureTime\": \"07:18:38\",\n    \"arrivalTime\": \"10:34:59\",\n    \"gate\": \"50000000000000&&&&@??\",\n    \"status\": \"hello\",\n    \"flightCharge\": 3250,\n    \"aircraftId\": 1,\n    \"passengerIds\": [],\n    \"id\": 5789\n}"
+				},
+				{
+					"name": "code 201 запрос с дополнительным параметром",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "host",
+								"value": "192.168.40.100"
+							},
+							{
+								"key": "accept",
+								"value": "*/*"
+							},
+							{
+								"key": "User-Agent",
+								"value": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0.0.0 YaBrowser/24.12.0.0 Safari/537.36"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"flightNumber\": \"?роп7$6\",\r\n    \"departureAirportCode\": \"LED\",\r\n    \"destinationAirportCode\": \"YALA\",\r\n    \"departureDate\": \"2025-03-10\",\r\n    \"arrivalDate\": \"2025-03-11\",\r\n    \"departureTime\": \"07:18:38\",\r\n    \"arrivalTime\": \"10:34:59\",\r\n    \"gate\": \"50000000000000&&&&@??\",\r\n    \"status\": \"hello\",\r\n    \"flightCharge\": 3250.00,\r\n    \"aircraftId\": 1,\r\n    \"passengerIds\": 2\r\n}"
+						},
+						"url": "http://192.168.40.100:8168/api/v0/flights"
+					},
+					"status": "Created",
+					"code": 201,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "_FTB-flight",
+							"value": "It is soooo expensive to travel nowdays... ."
+						},
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "X-XSS-Protection",
+							"value": "1; mode=block"
+						},
+						{
+							"key": "Cache-Control",
+							"value": "no-cache, no-store, max-age=0, must-revalidate"
+						},
+						{
+							"key": "Pragma",
+							"value": "no-cache"
+						},
+						{
+							"key": "Expires",
+							"value": "0"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "SAMEORIGIN"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Date",
+							"value": "Tue, 14 Jan 2025 13:48:17 GMT"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=60"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"flightId\": 5790,\n    \"flightNumber\": \"?роп7$6\",\n    \"departureAirportCode\": \"LED\",\n    \"destinationAirportCode\": \"YALA\",\n    \"departureDate\": [\n        2025,\n        3,\n        10\n    ],\n    \"arrivalDate\": [\n        2025,\n        3,\n        11\n    ],\n    \"departureTime\": \"07:18:38\",\n    \"arrivalTime\": \"10:34:59\",\n    \"gate\": \"50000000000000&&&&@??\",\n    \"status\": \"hello\",\n    \"flightCharge\": 3250,\n    \"aircraftId\": 1,\n    \"passengerIds\": [],\n    \"id\": 5790\n}"
+				}
+			]
+		},
+		{
+			"name": "http://192.168.40.100:8168/api/v0/flights",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "User-Agent",
+						"value": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0.0.0 YaBrowser/24.12.0.0 Safari/537.36"
+					},
+					{
+						"key": "accept",
+						"value": "*/*"
+					},
+					{
+						"key": "host",
+						"value": "192.168.40.100"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "{{base_url}}/{id}"
+			},
+			"response": [
+				{
+					"name": "code 200",
+					"originalRequest": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "User-Agent",
+								"value": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0.0.0 YaBrowser/24.12.0.0 Safari/537.36"
+							},
+							{
+								"key": "accept",
+								"value": "*/*"
+							},
+							{
+								"key": "host",
+								"value": "192.168.40.100"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{base_url}}/3"
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "X-XSS-Protection",
+							"value": "1; mode=block"
+						},
+						{
+							"key": "Cache-Control",
+							"value": "no-cache, no-store, max-age=0, must-revalidate"
+						},
+						{
+							"key": "Pragma",
+							"value": "no-cache"
+						},
+						{
+							"key": "Expires",
+							"value": "0"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "SAMEORIGIN"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Date",
+							"value": "Sun, 12 Jan 2025 12:15:25 GMT"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=60"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"flightId\": 3,\n    \"flightNumber\": \"GG-7374\",\n    \"departureAirportCode\": \"FAMG\",\n    \"destinationAirportCode\": \"VEAN\",\n    \"departureDate\": [\n        2022,\n        10,\n        17\n    ],\n    \"arrivalDate\": [\n        2022,\n        10,\n        19\n    ],\n    \"departureTime\": \"Sat Sep 24 20:48:02 UTC 2022\",\n    \"arrivalTime\": \"Sat Sep 24 18:13:51 UTC 2022\",\n    \"gate\": null,\n    \"status\": null,\n    \"flightCharge\": 769.1832665938151,\n    \"aircraftId\": 6,\n    \"passengerIds\": [\n        2,\n        35,\n        114,\n        115,\n        152,\n        3584,\n        3585,\n        3706,\n        3707,\n        3708,\n        3709,\n        3710,\n        3711,\n        3713,\n        3714,\n        3715,\n        3716,\n        3717,\n        3718,\n        3719,\n        3720,\n        3721,\n        3722,\n        3723,\n        3724,\n        3725,\n        3726,\n        3727,\n        3728,\n        3729,\n        3730,\n        3731,\n        3732,\n        3733,\n        3734,\n        3735,\n        3739,\n        3740,\n        3741\n    ],\n    \"id\": 3\n}"
+				},
+				{
+					"name": "code 400",
+					"originalRequest": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "User-Agent",
+								"value": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0.0.0 YaBrowser/24.12.0.0 Safari/537.36"
+							},
+							{
+								"key": "accept",
+								"value": "*/*"
+							},
+							{
+								"key": "host",
+								"value": "192.168.40.100"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{base_url}}/mango"
+					},
+					"status": "Bad Request",
+					"code": 400,
+					"_postman_previewlanguage": "plain",
+					"header": [
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "X-XSS-Protection",
+							"value": "1; mode=block"
+						},
+						{
+							"key": "Cache-Control",
+							"value": "no-cache, no-store, max-age=0, must-revalidate"
+						},
+						{
+							"key": "Pragma",
+							"value": "no-cache"
+						},
+						{
+							"key": "Expires",
+							"value": "0"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "SAMEORIGIN"
+						},
+						{
+							"key": "Content-Length",
+							"value": "0"
+						},
+						{
+							"key": "Date",
+							"value": "Sun, 12 Jan 2025 12:15:48 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "close"
+						}
+					],
+					"cookie": [],
+					"body": null
+				},
+				{
+					"name": "code 404",
+					"originalRequest": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "User-Agent",
+								"value": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0.0.0 YaBrowser/24.12.0.0 Safari/537.36"
+							},
+							{
+								"key": "accept",
+								"value": "*/*"
+							},
+							{
+								"key": "host",
+								"value": "192.168.40.100"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{base_url}}/555555555"
+					},
+					"status": "Not Found",
+					"code": 404,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "X-XSS-Protection",
+							"value": "1; mode=block"
+						},
+						{
+							"key": "Cache-Control",
+							"value": "no-cache, no-store, max-age=0, must-revalidate"
+						},
+						{
+							"key": "Pragma",
+							"value": "no-cache"
+						},
+						{
+							"key": "Expires",
+							"value": "0"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "SAMEORIGIN"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Date",
+							"value": "Sun, 12 Jan 2025 12:16:07 GMT"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=60"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"timestamp\": \"2025-01-12 12:16:07:392524665 +0000\",\n    \"status\": \"404 NOT_FOUND\",\n    \"message\": \"Entity not found.\",\n    \"details\": [\n        \"Flight | Flight was not found by id=555555555\"\n    ]\n}"
+				}
+			]
+		},
+		{
+			"name": "http://192.168.40.100:8168/api/v0/flights",
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "User-Agent",
+						"value": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0.0.0 YaBrowser/24.12.0.0 Safari/537.36"
+					},
+					{
+						"key": "accept",
+						"value": "*/*"
+					},
+					{
+						"key": "host",
+						"value": "192.168.40.100"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "{{base_url}}/5795"
+			},
+			"response": [
+				{
+					"name": "code 200",
+					"originalRequest": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "User-Agent",
+								"value": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0.0.0 YaBrowser/24.12.0.0 Safari/537.36"
+							},
+							{
+								"key": "accept",
+								"value": "*/*"
+							},
+							{
+								"key": "host",
+								"value": "192.168.40.100"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{base_url}}/5717"
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "X-XSS-Protection",
+							"value": "1; mode=block"
+						},
+						{
+							"key": "Cache-Control",
+							"value": "no-cache, no-store, max-age=0, must-revalidate"
+						},
+						{
+							"key": "Pragma",
+							"value": "no-cache"
+						},
+						{
+							"key": "Expires",
+							"value": "0"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "SAMEORIGIN"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Date",
+							"value": "Sun, 12 Jan 2025 12:08:46 GMT"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=60"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"code\": 200,\n    \"message\": \"Deleted Flight by Id=5717\",\n    \"details\": {\n        \"Id\": \"5717\"\n    }\n}"
+				},
+				{
+					"name": "code 404",
+					"originalRequest": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "User-Agent",
+								"value": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0.0.0 YaBrowser/24.12.0.0 Safari/537.36"
+							},
+							{
+								"key": "accept",
+								"value": "*/*"
+							},
+							{
+								"key": "host",
+								"value": "192.168.40.100"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{base_url}}/5717"
+					},
+					"status": "Not Found",
+					"code": 404,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "X-XSS-Protection",
+							"value": "1; mode=block"
+						},
+						{
+							"key": "Cache-Control",
+							"value": "no-cache, no-store, max-age=0, must-revalidate"
+						},
+						{
+							"key": "Pragma",
+							"value": "no-cache"
+						},
+						{
+							"key": "Expires",
+							"value": "0"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "SAMEORIGIN"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Date",
+							"value": "Sun, 12 Jan 2025 12:12:07 GMT"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=60"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"timestamp\": \"2025-01-12 12:12:07:988881247 +0000\",\n    \"status\": \"404 NOT_FOUND\",\n    \"message\": \"Entity not found.\",\n    \"details\": [\n        \"Flight | Flight was not found by id=5717\"\n    ]\n}"
+				},
+				{
+					"name": "code 400 не удаляет поля с null",
+					"originalRequest": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "User-Agent",
+								"value": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0.0.0 YaBrowser/24.12.0.0 Safari/537.36"
+							},
+							{
+								"key": "accept",
+								"value": "*/*"
+							},
+							{
+								"key": "host",
+								"value": "192.168.40.100"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{base_url}}/3"
+					},
+					"status": "Bad Request",
+					"code": 400,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "X-XSS-Protection",
+							"value": "1; mode=block"
+						},
+						{
+							"key": "Cache-Control",
+							"value": "no-cache, no-store, max-age=0, must-revalidate"
+						},
+						{
+							"key": "Pragma",
+							"value": "no-cache"
+						},
+						{
+							"key": "Expires",
+							"value": "0"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "SAMEORIGIN"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Date",
+							"value": "Sun, 12 Jan 2025 12:12:23 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "close"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"timestamp\": \"2025-01-12 12:12:23:637498707 +0000\",\n    \"status\": \"400 BAD_REQUEST\",\n    \"message\": \"could not execute statement; SQL [n/a]; constraint [null]; nested exception is org.hibernate.exception.ConstraintViolationException: could not execute statement\",\n    \"details\": [\n        \"could not execute statement; SQL [n/a]; constraint [null]; nested exception is org.hibernate.exception.ConstraintViolationException: could not execute statement\",\n        \"could not execute statement\",\n        \"Cannot delete or update a parent row: a foreign key constraint fails\"\n    ]\n}"
+				}
+			]
+		},
+		{
+			"name": "http://192.168.40.100:8168/aircraft/delete?aircraftId={id}",
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "host",
+						"value": "192.168.40.100:8168"
+					},
+					{
+						"key": "proxy-connection",
+						"value": "keep-alive"
+					},
+					{
+						"key": "upgrade-insecure-requests",
+						"value": "1"
+					},
+					{
+						"key": "user-agent",
+						"value": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/132.0.0.0 YaBrowser/25.2.0.0 Safari/537.36"
+					},
+					{
+						"key": "accept",
+						"value": "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7"
+					},
+					{
+						"key": "referer",
+						"value": "http://192.168.40.100:8168/aircraft/delete?aircraftId=1106"
+					},
+					{
+						"key": "accept-encoding",
+						"value": "gzip, deflate"
+					},
+					{
+						"key": "accept-language",
+						"value": "ru,en;q=0.9"
+					},
+					{
+						"key": "cookie",
+						"value": "JSESSIONID=CA30D398AD95DDCEC39907F2564920DE"
+					}
+				],
+				"url": "http://192.168.40.100:8168/api/v0/aircrafts/1097"
+			},
+			"response": []
+		},
+		{
+			"name": "http://192.168.40.100:8168/api/v0/aircrafts/{id}",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": "http://192.168.40.100:8168/api/v0/aircrafts/10000"
+			},
+			"response": []
+		},
+		{
+			"name": "http://192.168.40.100:8168/api/v0/airports",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "host",
+						"value": "192.168.40.100:8000"
+					},
+					{
+						"key": "proxy-connection",
+						"value": "keep-alive"
+					},
+					{
+						"key": "authorization",
+						"value": "Basic am9objpqb2huMTIz"
+					},
+					{
+						"key": "user-agent",
+						"value": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/132.0.0.0 YaBrowser/25.2.0.0 Safari/537.36"
+					},
+					{
+						"key": "accept",
+						"value": "*/*"
+					},
+					{
+						"key": "referer",
+						"value": "http://192.168.40.100:8000/swagger-ui/index.html"
+					},
+					{
+						"key": "accept-encoding",
+						"value": "gzip, deflate"
+					},
+					{
+						"key": "accept-language",
+						"value": "ru,en;q=0.9"
+					},
+					{
+						"key": "cookie",
+						"value": "JSESSIONID=920E6CEB8943E84EEDCF761B0BAD3CF4"
+					}
+				],
+				"url": "http://192.168.40.100:8168/api/v0/airports"
+			},
+			"response": []
+		},
+		{
+			"name": "http://192.168.40.100:8168/api/v0/aircrafts",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"manufacturer\": \"POOOhfy\",\r\n  \"model\": \"fly123\",\r\n  \"numberOfSeats\": \r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "http://192.168.40.100:8168/api/v0/aircrafts"
+			},
+			"response": []
+		},
+		{
+			"name": "New Request",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"manufacturer\": \"string\",\r\n  \"model\": \"string\",\r\n  \"numberOfSeats\": 1000\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://192.168.40.100:8168/api/v0/aircrafts/1111",
+					"protocol": "http",
+					"host": [
+						"192",
+						"168",
+						"40",
+						"100"
+					],
+					"port": "8168",
+					"path": [
+						"api",
+						"v0",
+						"aircrafts",
+						"1111"
+					],
+					"query": [
+						{
+							"key": "",
+							"value": "",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"auth": {
+		"type": "basic",
+		"basic": {
+			"password": "john123",
+			"username": "john"
+		}
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "base_url",
+			"value": "http://192.168.40.100:8168/api/v0/flights",
+			"type": "string"
+		}
+	]
+}

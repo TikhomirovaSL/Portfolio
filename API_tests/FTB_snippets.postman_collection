@@ -1,0 +1,357 @@
+{
+	"info": {
+		"_postman_id": "74b6bde8-216f-4afa-8541-f7315253dff3",
+		"name": "FTB Auto",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
+		"_exporter_id": "22589652"
+	},
+	"item": [
+		{
+			"name": "http://192.168.40.100:8168/api/v0/flights",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Cheking the value of the 'aircraftId'\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.aircraftId).to.not.be.below(0);\r",
+							"});\r",
+							"pm.test(\"Cheking that 'departureAirportCode' has 2 to 5 symbols\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.departureAirportCode.length).to.be.within(2, 5);\r",
+							"});\r",
+							"pm.test(\"Cheking that 'destinationAirportCode' has 2 to 5 symbols\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.destinationAirportCode.length).to.be.within(2, 5);\r",
+							"});\r",
+							"pm.test(\"Cheking the value of the 'status'\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.status).to.be.oneOf([\"OPEN\", \"ON-TIME\", \"DELAYED\", \"CANCELLED\", \"CHECKING_IN\", \"BOARDING\", \"CLOSED\"]);\r",
+							"});\r",
+							"pm.test(\"Successful POST request\", function () {\r",
+							"    pm.expect(pm.response.code).to.be.oneOf([201, 202]);\r",
+							"});\r",
+							"pm.test(\"Response time is less than 400ms\", function () {\r",
+							"    pm.expect(pm.response.responseTime).to.be.below(400);\r",
+							"});\r",
+							"pm.test(\"Body matches string 'message'\", function () {\r",
+							"    pm.expect(pm.response.text()).to.include(\"message\");\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": {
+						"password": "john123",
+						"username": "john"
+					}
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "host",
+						"value": "192.168.40.100"
+					},
+					{
+						"key": "accept",
+						"value": "*/*"
+					},
+					{
+						"key": "User-Agent",
+						"value": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0.0.0 YaBrowser/24.12.0.0 Safari/537.36"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"flightNumber\": \"AF567\",\r\n    \"departureAirportCode\": \"LED\",\r\n    \"destinationAirportCode\": \"YALA\",\r\n    \"departureDate\": \"2025-03-14\",\r\n    \"arrivalDate\": \"2025-03-14\",\r\n    \"departureTime\": \"07.18.38\",\r\n    \"arrivalTime\": \"10.34.59\",\r\n    \"gate\": \"8\",\r\n    \"status\": \"OPEN\",\r\n    \"flightCharge\": 17654,\r\n    \"aircraftId\": 3\r\n}"
+				},
+				"url": "http://192.168.40.100:8168/api/v0/flights"
+			},
+			"response": [
+				{
+					"name": "201 корректные данные",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "host",
+								"value": "192.168.40.100"
+							},
+							{
+								"key": "accept",
+								"value": "*/*"
+							},
+							{
+								"key": "User-Agent",
+								"value": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0.0.0 YaBrowser/24.12.0.0 Safari/537.36"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"flightNumber\": \"AF567\",\r\n    \"departureAirportCode\": \"LED\",\r\n    \"destinationAirportCode\": \"YALA\",\r\n    \"departureDate\": \"2025-03-10\",\r\n    \"arrivalDate\": \"2025-03-11\",\r\n    \"departureTime\": \"07.18.38\",\r\n    \"arrivalTime\": \"10.34.59\",\r\n    \"gate\": \"8\",\r\n    \"status\": \"OPEN\",\r\n    \"flightCharge\": 10354,\r\n    \"aircraftId\": 1\r\n}"
+						},
+						"url": "http://192.168.40.100:8168/api/v0/flights"
+					},
+					"status": "Created",
+					"code": 201,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "_FTB-flight",
+							"value": "It is soooo expensive to travel nowdays... ."
+						},
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "X-XSS-Protection",
+							"value": "1; mode=block"
+						},
+						{
+							"key": "Cache-Control",
+							"value": "no-cache, no-store, max-age=0, must-revalidate"
+						},
+						{
+							"key": "Pragma",
+							"value": "no-cache"
+						},
+						{
+							"key": "Expires",
+							"value": "0"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "SAMEORIGIN"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Date",
+							"value": "Mon, 10 Mar 2025 14:26:25 GMT"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=60"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"flightId\": 5812,\n    \"flightNumber\": \"AF567\",\n    \"departureAirportCode\": \"LED\",\n    \"destinationAirportCode\": \"YALA\",\n    \"departureDate\": [\n        2025,\n        3,\n        10\n    ],\n    \"arrivalDate\": [\n        2025,\n        3,\n        11\n    ],\n    \"departureTime\": \"07.18.38\",\n    \"arrivalTime\": \"10.34.59\",\n    \"gate\": \"8\",\n    \"status\": \"OPEN\",\n    \"flightCharge\": 10354,\n    \"aircraftId\": 1,\n    \"passengerIds\": [],\n    \"id\": 5812\n}"
+				},
+				{
+					"name": "500 aircraftId=0",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "host",
+								"value": "192.168.40.100"
+							},
+							{
+								"key": "accept",
+								"value": "*/*"
+							},
+							{
+								"key": "User-Agent",
+								"value": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0.0.0 YaBrowser/24.12.0.0 Safari/537.36"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"flightNumber\": \"AF567\",\r\n    \"departureAirportCode\": \"LED\",\r\n    \"destinationAirportCode\": \"YALA\",\r\n    \"departureDate\": \"2025-03-10\",\r\n    \"arrivalDate\": \"2025-03-11\",\r\n    \"departureTime\": \"07.18.38\",\r\n    \"arrivalTime\": \"10.34.59\",\r\n    \"gate\": \"8\",\r\n    \"status\": \"OPEN\",\r\n    \"flightCharge\": 10354,\r\n    \"aircraftId\": 0\r\n}"
+						},
+						"url": "http://192.168.40.100:8168/api/v0/flights"
+					},
+					"status": "Internal Server Error",
+					"code": 500,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "X-XSS-Protection",
+							"value": "1; mode=block"
+						},
+						{
+							"key": "Cache-Control",
+							"value": "no-cache, no-store, max-age=0, must-revalidate"
+						},
+						{
+							"key": "Pragma",
+							"value": "no-cache"
+						},
+						{
+							"key": "Expires",
+							"value": "0"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "SAMEORIGIN"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Date",
+							"value": "Mon, 10 Mar 2025 14:28:14 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "close"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"timestamp\": \"2025-03-10 14:28:14:113831806 +0000\",\n    \"status\": \"500 INTERNAL_SERVER_ERROR\",\n    \"message\": \"Server Error\",\n    \"details\": [\n        \"Could not find aircraft Id=0\"\n    ]\n}"
+				},
+				{
+					"name": "400 пустое тело запроса",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "host",
+								"value": "192.168.40.100"
+							},
+							{
+								"key": "accept",
+								"value": "*/*"
+							},
+							{
+								"key": "User-Agent",
+								"value": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0.0.0 YaBrowser/24.12.0.0 Safari/537.36"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\r\n}"
+						},
+						"url": "http://192.168.40.100:8168/api/v0/flights"
+					},
+					"status": "Bad Request",
+					"code": 400,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "X-XSS-Protection",
+							"value": "1; mode=block"
+						},
+						{
+							"key": "Cache-Control",
+							"value": "no-cache, no-store, max-age=0, must-revalidate"
+						},
+						{
+							"key": "Pragma",
+							"value": "no-cache"
+						},
+						{
+							"key": "Expires",
+							"value": "0"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "SAMEORIGIN"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Date",
+							"value": "Mon, 10 Mar 2025 14:30:07 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "close"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"timestamp\": \"2025-03-10 14:30:07:327187948 +0000\",\n    \"status\": \"400 BAD_REQUEST - BAD, BAD REQUEST\",\n    \"message\": \"Validation Failed\",\n    \"details\": [\n        \"flightNumber | must not be blank\",\n        \"departureAirportCode | must not be blank\",\n        \"arrivalTime | must not be blank\",\n        \"destinationAirportCode | must not be blank\",\n        \"departureTime | must not be blank\"\n    ]\n}"
+				}
+			]
+		}
+	],
+	"auth": {
+		"type": "basic",
+		"basic": {
+			"password": "john123",
+			"username": "john"
+		}
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "base_url",
+			"value": "http://192.168.40.100:8168/api/v0/flights",
+			"type": "string"
+		}
+	]
+}

@@ -1,0 +1,1480 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite id="1451" name="Tikhomirova" >
+<node_order><![CDATA[2]]></node_order>
+<details><![CDATA[]]></details> 
+<testsuite id="3171" name="POST /flight Gherkin" >
+<node_order><![CDATA[0]]></node_order>
+<details><![CDATA[]]></details> 
+
+<testcase internalid="3172" name="API-Рейс-Создание рейса с некорректным типом данных поля gate">
+	<node_order><![CDATA[1000]]></node_order>
+	<externalid><![CDATA[281]]></externalid>
+	<fullexternalid><![CDATA[FTB-281]]></fullexternalid>
+	<version><![CDATA[2]]></version>
+	<summary><![CDATA[<p><strong>Feature:&nbsp;</strong>API-Рейс-Создание рейса</p>
+
+<p><strong>Scenario Outline:</strong> Проверка возможности создания нового рейса с некорректным типом данных поля gate, остальные поля заполнены корректно.</p>
+]]></summary>
+	<preconditions><![CDATA[<p><strong>Given</strong>&nbsp;URL запроса POST/flight: http://192.168.40.100:8{UID}/api/v0/flights</p>
+
+<p><strong>And&nbsp;</strong>Авторизация выполняется под логином и паролем администратора (логин:john; пароль:john123)</p>
+
+<p><strong>And</strong> БД должна содержать хотя бы 2 записи в таблице airport, одну запись в таблице aircraft.</p>
+]]></preconditions>
+	<execution_type><![CDATA[2]]></execution_type>
+	<importance><![CDATA[2]]></importance>
+	<estimated_exec_duration></estimated_exec_duration>
+	<status>1</status>
+	<is_open>1</is_open>
+	<active>1</active>
+<steps>
+<step>
+	<step_number><![CDATA[1]]></step_number>
+	<actions><![CDATA[<table>
+	<tbody>
+		<tr>
+			<td>
+			<p><strong>When</strong> Пользователь отправляет&nbsp;POST/flight запрос с параметрами:<br />
+			&nbsp; &nbsp; &quot;flightNumber&quot;: &quot;&lt;flightNumber&gt;&quot;;<br />
+			&nbsp; &nbsp; &quot;departureAirportCode&quot;: &quot;&lt;departureAirportCode&gt;&quot;;<br />
+			&nbsp; &nbsp; &quot;destinationAirportCode&quot;: &quot;&lt;destinationAirportCode&gt;&quot;;<br />
+			&nbsp; &nbsp; &quot;departureDate&quot;: &quot;&lt;дата не позже текущей&gt;&quot;;<br />
+			&nbsp; &nbsp; &quot;arrivalDate&quot;: &quot;&lt;дата не позже текущей&gt;&quot;;<br />
+			&nbsp; &nbsp; &quot;departureTime&quot;: &quot;&lt;departureTime&gt;&quot;;<br />
+			&nbsp; &nbsp; &quot;arrivalTime&quot;: &quot;&lt;arrivalTime&gt;&quot;;<br />
+			&nbsp; &nbsp; &quot;gate&quot;: &quot;&lt;gate&gt;&quot;;<br />
+			&nbsp; &nbsp; &quot;status&quot;: &quot;&lt;status&gt;&quot;;<br />
+			&nbsp; &nbsp; &quot;flightCharge&quot;: &lt;flightCharge&gt;;<br />
+			&nbsp; &nbsp; &quot;aircraftId&quot;: &lt;aircraftId&gt;.</p>
+			</td>
+		</tr>
+	</tbody>
+</table>
+]]></actions>
+	<expectedresults><![CDATA[<p><strong>Then</strong>&nbsp;Код ответа &quot;400&quot;</p>
+
+<p><strong>And&nbsp;</strong>Тело ответа содержит параметр &quot;timestamp&quot;: &quot;&lt;дата время&gt;&quot;</p>
+
+<p><strong>And&nbsp;</strong>Тело ответа содержит параметр&nbsp;&quot;status&quot;: &quot;400 BAD_REQUEST - BAD, BAD REQUEST&quot;</p>
+
+<p><strong>And</strong> Тело ответа содержит параметр&nbsp;&quot;message&quot;: &quot;Validation Failed&quot;</p>
+
+<p><strong>And</strong> Тело ответа содержит параметр&nbsp;&quot;details&quot;: [&nbsp; &nbsp; &quot;gate&nbsp;| gate has an incorrect format.&quot;]</p>
+
+<p><strong>And</strong> Рейс не создан</p>
+]]></expectedresults>
+	<execution_type><![CDATA[2]]></execution_type>
+</step>
+
+<step>
+	<step_number><![CDATA[2]]></step_number>
+	<actions><![CDATA[<p><strong>Examples</strong></p>
+
+<table border="1" cellpadding="1" cellspacing="1">
+	<tbody>
+		<tr>
+			<td>flightNumber</td>
+			<td>departureAirportCode</td>
+			<td>destinationAirportCode</td>
+			<td>departureDate</td>
+			<td>arrivalDate</td>
+			<td>departureTime</td>
+			<td>arrivalTime</td>
+			<td>gate</td>
+			<td>status</td>
+			<td>flightCharge</td>
+			<td>aircraftId</td>
+		</tr>
+		<tr>
+			<td>FR76</td>
+			<td>LED</td>
+			<td>YALA</td>
+			<td>&lt;дата не позже текущей&gt;</td>
+			<td>&lt;дата не позже текущей&gt;</td>
+			<td>07:30</td>
+			<td>15:20</td>
+			<td>50$%@&amp;&amp;/#</td>
+			<td>OPEN</td>
+			<td>3524</td>
+			<td>1</td>
+		</tr>
+		<tr>
+			<td>A90</td>
+			<td>LED</td>
+			<td>YALA</td>
+			<td>&lt;дата не позже текущей&gt;</td>
+			<td>&lt;дата не позже текущей&gt;</td>
+			<td>09:40</td>
+			<td>17:34</td>
+			<td>string</td>
+			<td>CLOSED</td>
+			<td>50000</td>
+			<td>1</td>
+		</tr>
+		<tr>
+			<td>GRE2</td>
+			<td>YALA</td>
+			<td>LED</td>
+			<td>&lt;дата не позже текущей&gt;</td>
+			<td>&lt;дата не позже текущей&gt;</td>
+			<td>23:15</td>
+			<td>15:04</td>
+			<td>354.78</td>
+			<td>OPEN</td>
+			<td>17699</td>
+			<td>1</td>
+		</tr>
+		<tr>
+			<td>789B</td>
+			<td>YALA</td>
+			<td>LED</td>
+			<td>&lt;дата не позже текущей&gt;</td>
+			<td>&lt;дата не позже текущей&gt;</td>
+			<td>20:17</td>
+			<td>06:27</td>
+			<td>0</td>
+			<td>CLOSED</td>
+			<td>2560</td>
+			<td>1</td>
+		</tr>
+	</tbody>
+</table>
+]]></actions>
+	<expectedresults><![CDATA[]]></expectedresults>
+	<execution_type><![CDATA[2]]></execution_type>
+</step>
+</steps>
+</testcase>
+
+<testcase internalid="3177" name="API-Рейс-Создание рейса без параметров Date">
+	<node_order><![CDATA[1001]]></node_order>
+	<externalid><![CDATA[282]]></externalid>
+	<fullexternalid><![CDATA[FTB-282]]></fullexternalid>
+	<version><![CDATA[2]]></version>
+	<summary><![CDATA[<p><strong>Feature:&nbsp;</strong>API-Рейс-Создание рейса</p>
+
+<p><strong>Scenario:</strong>&nbsp;Проверка возможности создания&nbsp;рейса без параметров Date в теле запроса.</p>
+]]></summary>
+	<preconditions><![CDATA[<p><strong>Given</strong>&nbsp;URL запроса POST/flight: http://192.168.40.100:8{UID}/api/v0/flights</p>
+
+<p><strong>And&nbsp;</strong>Авторизация выполняется под логином и паролем администратора (логин:john; пароль:john123)</p>
+
+<p><strong>And</strong>&nbsp;БД должна содержать хотя бы 2 записи в таблице airport, одну запись в таблице aircraft.</p>
+]]></preconditions>
+	<execution_type><![CDATA[2]]></execution_type>
+	<importance><![CDATA[2]]></importance>
+	<estimated_exec_duration></estimated_exec_duration>
+	<status>1</status>
+	<is_open>1</is_open>
+	<active>1</active>
+<steps>
+<step>
+	<step_number><![CDATA[1]]></step_number>
+	<actions><![CDATA[<table>
+	<tbody>
+		<tr>
+			<td>
+			<table>
+				<tbody>
+					<tr>
+						<td>
+						<p><strong>When</strong> Пользователь отправляет&nbsp;POST/flight запрос с параметрами:<br />
+						&nbsp; &nbsp; &quot;flightNumber&quot;: &quot;&lt;flightNumber&gt;&quot;;<br />
+						&nbsp; &nbsp; &quot;departureAirportCode&quot;: &quot;&lt;departureAirportCode&gt;&quot;;<br />
+						&nbsp; &nbsp; &quot;destinationAirportCode&quot;: &quot;&lt;destinationAirportCode&gt;&quot;;<br />
+						&nbsp; &nbsp; &quot;departureTime&quot;: &quot;&lt;departureTime&gt;&quot;;<br />
+						&nbsp; &nbsp; &quot;arrivalTime&quot;: &quot;&lt;arrivalTime&gt;&quot;;<br />
+						&nbsp; &nbsp; &quot;gate&quot;: &quot;&lt;gate&gt;&quot;;<br />
+						&nbsp; &nbsp; &quot;status&quot;: &quot;&lt;status&gt;&quot;;<br />
+						&nbsp; &nbsp; &quot;flightCharge&quot;: &lt;flightCharge&gt;;<br />
+						&nbsp; &nbsp; &quot;aircraftId&quot;: &lt;aircraftId&gt;.</p>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+			</td>
+		</tr>
+	</tbody>
+</table>
+]]></actions>
+	<expectedresults><![CDATA[<p><strong>Then</strong>&nbsp;Код ответа &quot;500&quot;</p>
+
+<table>
+	<tbody>
+		<tr>
+			<td>
+			<p><strong>And&nbsp;</strong>Тело ответа содержит параметр &quot;timestamp&quot;: &quot;&lt;дата время&gt;&quot;</p>
+
+			<p><strong>And&nbsp;</strong>Тело ответа содержит параметр&nbsp; &quot;status&quot;: &quot;500 INTERNAL_SERVER_ERROR&quot;</p>
+
+			<p><strong>And</strong>&nbsp;Тело ответа содержит параметр&nbsp;&quot;message&quot;: &quot;Server Error&quot;</p>
+
+			<p><strong>And</strong>&nbsp;Тело ответа содержит параметр&nbsp;&quot;details&quot;: [ &quot;Cannot invoke \&quot;java.time.LocalDate.isBefore(java.time.chrono.ChronoLocalDate)\&quot; because the return value of \&quot;com.aerotravel.flightticketbooking.model.dto.FlightDto.getArrivalDate()\&quot; is null&quot; ]</p>
+
+			<p><strong>And</strong>&nbsp;Рейс не создан</p>
+			</td>
+		</tr>
+	</tbody>
+</table>
+
+<p>&nbsp;</p>
+]]></expectedresults>
+	<execution_type><![CDATA[2]]></execution_type>
+</step>
+</steps>
+</testcase>
+
+<testcase internalid="3182" name="API-Рейс-Создание рейса с некорректным форматом времени">
+	<node_order><![CDATA[1002]]></node_order>
+	<externalid><![CDATA[283]]></externalid>
+	<fullexternalid><![CDATA[FTB-283]]></fullexternalid>
+	<version><![CDATA[2]]></version>
+	<summary><![CDATA[<p><strong>Feature:&nbsp;</strong>API-Рейс-Создание рейса</p>
+
+<p><strong>Scenario Outline:</strong>&nbsp;Проверка возможности создания нового рейса с некорректным форматом времени (departureTime, arrivalTime), остальные поля заполнены корректно.</p>
+]]></summary>
+	<preconditions><![CDATA[<p><strong>Given</strong>&nbsp;URL запроса POST/flight: http://192.168.40.100:8{UID}/api/v0/flights</p>
+
+<p><strong>And&nbsp;</strong>Авторизация выполняется под логином и паролем администратора (логин:john; пароль:john123)</p>
+
+<p><strong>And</strong>&nbsp;БД должна содержать хотя бы 2 записи в таблице airport, одну запись в таблице aircraft.</p>
+]]></preconditions>
+	<execution_type><![CDATA[2]]></execution_type>
+	<importance><![CDATA[3]]></importance>
+	<estimated_exec_duration></estimated_exec_duration>
+	<status>1</status>
+	<is_open>1</is_open>
+	<active>1</active>
+<steps>
+<step>
+	<step_number><![CDATA[1]]></step_number>
+	<actions><![CDATA[<table>
+	<tbody>
+		<tr>
+			<td>
+			<p><strong>When</strong> Пользователь отправляет&nbsp;POST/flight запрос с параметрами:<br />
+			&nbsp; &nbsp; &quot;flightNumber&quot;: &quot;&lt;flightNumber&gt;&quot;;<br />
+			&nbsp; &nbsp; &quot;departureAirportCode&quot;: &quot;&lt;departureAirportCode&gt;&quot;;<br />
+			&nbsp; &nbsp; &quot;destinationAirportCode&quot;: &quot;&lt;destinationAirportCode&gt;&quot;;<br />
+			&nbsp; &nbsp; &quot;departureDate&quot;: &quot;&lt;дата не позже текущей&gt;&quot;;<br />
+			&nbsp; &nbsp; &quot;arrivalDate&quot;: &quot;&lt;дата не позже текущей&gt;&quot;;<br />
+			&nbsp; &nbsp; &quot;departureTime&quot;: &quot;&lt;departureTime&gt;&quot;;<br />
+			&nbsp; &nbsp; &quot;arrivalTime&quot;: &quot;&lt;arrivalTime&gt;&quot;;<br />
+			&nbsp; &nbsp; &quot;gate&quot;: &quot;&lt;gate&gt;&quot;;<br />
+			&nbsp; &nbsp; &quot;status&quot;: &quot;&lt;status&gt;&quot;;<br />
+			&nbsp; &nbsp; &quot;flightCharge&quot;: &lt;flightCharge&gt;;<br />
+			&nbsp; &nbsp; &quot;aircraftId&quot;: &lt;aircraftId&gt;.</p>
+			</td>
+		</tr>
+	</tbody>
+</table>
+]]></actions>
+	<expectedresults><![CDATA[<table>
+	<tbody>
+		<tr>
+			<td>
+			<p><strong>Then</strong>&nbsp;Код ответа &quot;400&quot;</p>
+
+			<p><strong>And&nbsp;</strong>Тело ответа содержит параметр &quot;timestamp&quot;: &quot;&lt;дата время&gt;&quot;</p>
+
+			<p><strong>And&nbsp;</strong>Тело ответа содержит параметр&nbsp;&quot;status&quot;: &quot;400 BAD_REQUEST - BAD, BAD REQUEST&quot;</p>
+
+			<p><strong>And</strong>&nbsp;Тело ответа содержит параметр&nbsp;&quot;message&quot;: &quot;Validation Failed&quot;</p>
+
+			<p><strong>And</strong>&nbsp;Тело ответа содержит параметр&nbsp;</p>
+
+			<p>&quot;details&quot;: [&nbsp;&quot; departureTime | must be in the correct format &quot;, &quot; arrivalTime | must be in the correct format&quot; ]</p>
+
+			<p><strong>And</strong>&nbsp;Рейс не создан</p>
+			</td>
+		</tr>
+	</tbody>
+</table>
+
+<p>&nbsp;</p>
+]]></expectedresults>
+	<execution_type><![CDATA[2]]></execution_type>
+</step>
+
+<step>
+	<step_number><![CDATA[2]]></step_number>
+	<actions><![CDATA[<p><strong>Examples</strong></p>
+
+<table border="1" cellpadding="1" cellspacing="1">
+	<tbody>
+		<tr>
+			<td>flightNumber</td>
+			<td>departureAirportCode</td>
+			<td>destinationAirportCode</td>
+			<td>departureDate</td>
+			<td>arrivalDate</td>
+			<td>departureTime</td>
+			<td>arrivalTime</td>
+			<td>gate</td>
+			<td>status</td>
+			<td>flightCharge</td>
+			<td>aircraftId</td>
+		</tr>
+		<tr>
+			<td>FR76</td>
+			<td>LED</td>
+			<td>YALA</td>
+			<td>&lt;дата не позже текущей&gt;</td>
+			<td>&lt;дата не позже текущей&gt;</td>
+			<td>07.30</td>
+			<td>15.20</td>
+			<td>A12</td>
+			<td>OPEN</td>
+			<td>3524</td>
+			<td>1</td>
+		</tr>
+		<tr>
+			<td>A90</td>
+			<td>LED</td>
+			<td>YALA</td>
+			<td>&lt;дата не позже текущей&gt;</td>
+			<td>&lt;дата не позже текущей&gt;</td>
+			<td>09-40</td>
+			<td>17-34</td>
+			<td>A12</td>
+			<td>CLOSED</td>
+			<td>50000</td>
+			<td>1</td>
+		</tr>
+		<tr>
+			<td>GRE2</td>
+			<td>YALA</td>
+			<td>LED</td>
+			<td>&lt;дата не позже текущей&gt;</td>
+			<td>&lt;дата не позже текущей&gt;</td>
+			<td>23/15</td>
+			<td>15/04</td>
+			<td>A12</td>
+			<td>OPEN</td>
+			<td>17699</td>
+			<td>1</td>
+		</tr>
+		<tr>
+			<td>789B</td>
+			<td>YALA</td>
+			<td>LED</td>
+			<td>&lt;дата не позже текущей&gt;</td>
+			<td>&lt;дата не позже текущей&gt;</td>
+			<td>201745</td>
+			<td>062732</td>
+			<td>A12</td>
+			<td>CLOSED</td>
+			<td>2560</td>
+			<td>1</td>
+		</tr>
+	</tbody>
+</table>
+]]></actions>
+	<expectedresults><![CDATA[]]></expectedresults>
+	<execution_type><![CDATA[2]]></execution_type>
+</step>
+</steps>
+</testcase>
+
+<testcase internalid="3187" name="API-Рейс-Создание рейса с дополнительными параметрами">
+	<node_order><![CDATA[1003]]></node_order>
+	<externalid><![CDATA[284]]></externalid>
+	<fullexternalid><![CDATA[FTB-284]]></fullexternalid>
+	<version><![CDATA[1]]></version>
+	<summary><![CDATA[<p><strong>Feature:&nbsp;</strong>API-Рейс-Создание рейса</p>
+
+<p><strong>Scenario:</strong>&nbsp;Проверка возможности создания нового рейса с дополнительным параметром в теле запроса, остальные параметры заполнены корректно.</p>
+]]></summary>
+	<preconditions><![CDATA[<p><strong>Given</strong>&nbsp;URL запроса POST/flight: http://192.168.40.100:8{UID}/api/v0/flights</p>
+
+<p><strong>And&nbsp;</strong>Авторизация выполняется под логином и паролем администратора (логин:john; пароль:john123)</p>
+
+<p><strong>And</strong>&nbsp;БД должна содержать хотя бы 2 записи в таблице airport, одну запись в таблице aircraft.</p>
+]]></preconditions>
+	<execution_type><![CDATA[2]]></execution_type>
+	<importance><![CDATA[2]]></importance>
+	<estimated_exec_duration></estimated_exec_duration>
+	<status>7</status>
+	<is_open>1</is_open>
+	<active>1</active>
+<steps>
+<step>
+	<step_number><![CDATA[1]]></step_number>
+	<actions><![CDATA[<p><strong>When</strong> Пользователь отправляет&nbsp;POST/flight запрос с параметрами:<br />
+&nbsp; &nbsp; &quot;flightNumber&quot;: &quot;&lt;flightNumber&gt;&quot;;<br />
+&nbsp; &nbsp; &quot;departureAirportCode&quot;: &quot;&lt;departureAirportCode&gt;&quot;;<br />
+&nbsp; &nbsp; &quot;destinationAirportCode&quot;: &quot;&lt;destinationAirportCode&gt;&quot;;<br />
+&nbsp; &nbsp; &quot;departureDate&quot;: &quot;&lt;дата не позже текущей&gt;&quot;;<br />
+&nbsp; &nbsp; &quot;arrivalDate&quot;: &quot;&lt;дата не позже текущей&gt;&quot;;<br />
+&nbsp; &nbsp; &quot;departureTime&quot;: &quot;&lt;departureTime&gt;&quot;;<br />
+&nbsp; &nbsp; &quot;arrivalTime&quot;: &quot;&lt;arrivalTime&gt;&quot;;<br />
+&nbsp; &nbsp; &quot;gate&quot;: &quot;&lt;gate&gt;&quot;;<br />
+&nbsp; &nbsp; &quot;status&quot;: &quot;&lt;status&gt;&quot;;<br />
+&nbsp; &nbsp; &quot;flightCharge&quot;: &lt;flightCharge&gt;;<br />
+&nbsp; &nbsp; &quot;aircraftId&quot;: &lt;aircraftId&gt;;</p>
+
+<p>&quot;passengerIds&quot;: &lt;целочисленное значение&gt;.</p>
+]]></actions>
+	<expectedresults><![CDATA[<p><strong>Then</strong>&nbsp;Код ответа &quot;400&quot;</p>
+
+<p><strong>And&nbsp;</strong>Тело ответа содержит параметр &quot;timestamp&quot;: &quot;&lt;дата время&gt;&quot;</p>
+
+<p><strong>And&nbsp;</strong>Тело ответа содержит параметр&nbsp;&quot;status&quot;: &quot;400 BAD_REQUEST - BAD, BAD REQUEST&quot;</p>
+
+<p><strong>And</strong> Тело ответа содержит параметр&nbsp;&quot;message&quot;: &quot;Validation Failed&quot;</p>
+
+<p><strong>And</strong> Тело ответа содержит параметр&nbsp;&quot;details&quot;: [ &quot; Invalid request body format &quot; ]</p>
+
+<p><strong>And</strong> Рейс не создан</p>
+
+<p>&nbsp;</p>
+]]></expectedresults>
+	<execution_type><![CDATA[2]]></execution_type>
+</step>
+</steps>
+</testcase>
+
+<testcase internalid="3190" name="API-Рейс-Создание рейса с обязательным параметром БД flightCharge">
+	<node_order><![CDATA[1004]]></node_order>
+	<externalid><![CDATA[285]]></externalid>
+	<fullexternalid><![CDATA[FTB-285]]></fullexternalid>
+	<version><![CDATA[2]]></version>
+	<summary><![CDATA[<p><strong>Feature:&nbsp;</strong>API-Рейс-Создание рейса</p>
+
+<p><strong>Scenario:</strong>&nbsp;Проверка возможности создания рейса с пустыми полями и заполненным полем&nbsp;flightCharge.</p>
+]]></summary>
+	<preconditions><![CDATA[<p><strong>Given</strong>&nbsp;URL запроса POST/flight: http://192.168.40.100:8{UID}/api/v0/flights</p>
+
+<p><strong>And&nbsp;</strong>Авторизация выполняется под логином и паролем администратора (логин:john; пароль:john123)</p>
+]]></preconditions>
+	<execution_type><![CDATA[2]]></execution_type>
+	<importance><![CDATA[3]]></importance>
+	<estimated_exec_duration></estimated_exec_duration>
+	<status>1</status>
+	<is_open>1</is_open>
+	<active>1</active>
+<steps>
+<step>
+	<step_number><![CDATA[1]]></step_number>
+	<actions><![CDATA[<p><strong>When</strong> Пользователь отправляет&nbsp;POST/flight запрос с параметрами:<br />
+&nbsp; &nbsp; &quot;flightNumber&quot;: &quot;null&quot;;<br />
+&nbsp; &nbsp; &quot;departureAirportCode&quot;: &quot;null&quot;;<br />
+&nbsp; &nbsp; &quot;destinationAirportCode&quot;: &quot;null&quot;;<br />
+&nbsp; &nbsp; &quot;departureDate&quot;: &quot;null&quot;;<br />
+&nbsp; &nbsp; &quot;arrivalDate&quot;: &quot;null&quot;;<br />
+&nbsp; &nbsp; &quot;departureTime&quot;: &quot;null&quot;;<br />
+&nbsp; &nbsp; &quot;arrivalTime&quot;: &quot;null&quot;;<br />
+&nbsp; &nbsp; &quot;gate&quot;: &quot;null&quot;;<br />
+&nbsp; &nbsp; &quot;status&quot;: &quot;null&quot;;<br />
+&nbsp; &nbsp; &quot;flightCharge&quot;: &lt;целочисленное значение&gt;;<br />
+&nbsp; &nbsp; &quot;aircraftId&quot;: null.<br />
+&nbsp;</p>
+]]></actions>
+	<expectedresults><![CDATA[<p><strong>Then</strong>&nbsp;Код ответа &quot;400&quot;</p>
+
+<p><strong>And&nbsp;</strong>Тело ответа содержит параметр &quot;timestamp&quot;: &quot;&lt;дата время&gt;&quot;</p>
+
+<p><strong>And&nbsp;</strong>Тело ответа содержит параметр&nbsp;&quot;status&quot;: &quot;400 BAD_REQUEST - BAD, BAD REQUEST&quot;</p>
+
+<p><strong>And</strong> Тело ответа содержит параметр&nbsp;&quot;message&quot;: &quot;Validation Failed&quot;</p>
+
+<p><strong>And</strong> Тело ответа содержит параметр&nbsp;&quot;details&quot;: [ &quot;flightNumber | must not be blank&quot;, &quot;departureTime | must not be blank&quot;, &quot;departureAirportCode | must not be blank&quot;, &quot;arrivalTime | must not be blank&quot;, &quot;destinationAirportCode | must not be blank&quot; ]</p>
+
+<p><strong>And</strong> Рейс не создан</p>
+
+<p>&nbsp;</p>
+]]></expectedresults>
+	<execution_type><![CDATA[2]]></execution_type>
+</step>
+</steps>
+</testcase>
+</testsuite><testsuite id="1596" name="POST /flight" >
+<node_order><![CDATA[1]]></node_order>
+<details><![CDATA[<p>1. Авторизация выполняется под логином и паролем администратора:</p>
+
+<p>логин:john</p>
+
+<p>пароль:john123</p>
+
+<p>2. Основной URL запроса POST/flight:</p>
+
+<p>http://192.168.40.100:8168/api/v0/flights</p>
+
+<p>3. Выбрать метод запроса POST.</p>
+]]></details> 
+
+<testcase internalid="1648" name="API-Рейс-Создание рейса с некорректным типом данных полей flightNumber, gate, status">
+	<node_order><![CDATA[1000]]></node_order>
+	<externalid><![CDATA[55]]></externalid>
+	<fullexternalid><![CDATA[FTB-55]]></fullexternalid>
+	<version><![CDATA[2]]></version>
+	<summary><![CDATA[<p>Проверка возможности создания нового рейса с некорректным типом данных полей&nbsp;flightNumber,&nbsp;gate,&nbsp;status, остальные поля заполнены корректно.</p>
+]]></summary>
+	<preconditions><![CDATA[<p>1. Предусловия смотри в suite;</p>
+
+<p>2. БД должна содержать хотя бы 2 записи в таблице airport, одну запись в таблице aircraft.</p>
+]]></preconditions>
+	<execution_type><![CDATA[1]]></execution_type>
+	<importance><![CDATA[2]]></importance>
+	<estimated_exec_duration></estimated_exec_duration>
+	<status>1</status>
+	<is_open>1</is_open>
+	<active>1</active>
+<steps>
+<step>
+	<step_number><![CDATA[1]]></step_number>
+	<actions><![CDATA[<table>
+	<tbody>
+		<tr>
+			<td>
+			<p>Отправить POST запрос с телом:</p>
+
+			<p>{<br />
+			&nbsp; &nbsp; &quot;flightNumber&quot;: &quot;?роп7$6&quot;,<br />
+			&nbsp; &nbsp; &quot;departureAirportCode&quot;: &quot;LED&quot;,<br />
+			&nbsp; &nbsp; &quot;destinationAirportCode&quot;: &quot;YALA&quot;,<br />
+			&nbsp; &nbsp; &quot;departureDate&quot;: &quot;2025-03-10&quot;,<br />
+			&nbsp; &nbsp; &quot;arrivalDate&quot;: &quot;2025-03-11&quot;,<br />
+			&nbsp; &nbsp; &quot;departureTime&quot;: &quot;07:18:38&quot;,<br />
+			&nbsp; &nbsp; &quot;arrivalTime&quot;: &quot;10:34:59&quot;,<br />
+			&nbsp; &nbsp; &quot;gate&quot;: &quot;50000000000000&amp;&amp;&amp;&amp;@??&quot;,<br />
+			&nbsp; &nbsp; &quot;status&quot;: &quot;hello&quot;,<br />
+			&nbsp; &nbsp; &quot;flightCharge&quot;: 3250.00,<br />
+			&nbsp; &nbsp; &quot;aircraftId&quot;: 1<br />
+			}</p>
+			</td>
+		</tr>
+	</tbody>
+</table>
+]]></actions>
+	<expectedresults><![CDATA[<p>Code 400</p>
+
+<p>Рейс не создан</p>
+
+<p>{</p>
+
+<p>&nbsp;&nbsp;&nbsp; &quot;timestamp&quot;: &quot;2025-01-14 08:39:45:778903617 +0000&quot;,</p>
+
+<p>&nbsp;&nbsp;&nbsp; &quot;status&quot;: &quot;400 BAD_REQUEST - BAD, BAD REQUEST&quot;,</p>
+
+<p>&nbsp;&nbsp;&nbsp; &quot;message&quot;: &quot;Validation Failed&quot;,</p>
+
+<p>&nbsp;&nbsp;&nbsp; &quot;details&quot;: [</p>
+
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &quot; flightNumber | must be in the correct format &quot;,</p>
+
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &quot; gate | must be in the correct format &quot;,</p>
+
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &quot; status | must be in the correct format }</p>
+]]></expectedresults>
+	<execution_type><![CDATA[1]]></execution_type>
+</step>
+</steps>
+</testcase>
+
+<testcase internalid="1654" name="API-Рейс-Создание рейса без параметров Date">
+	<node_order><![CDATA[1001]]></node_order>
+	<externalid><![CDATA[56]]></externalid>
+	<fullexternalid><![CDATA[FTB-56]]></fullexternalid>
+	<version><![CDATA[2]]></version>
+	<summary><![CDATA[<p>Проверка возможности создания&nbsp;рейса без параметров Date в запросе.</p>
+]]></summary>
+	<preconditions><![CDATA[<p>1. Предусловия смотри в suite;</p>
+
+<p>2. БД должна содержать хотя бы 2 записи в таблице airport,&nbsp;одну запись в таблице aircraft.</p>
+]]></preconditions>
+	<execution_type><![CDATA[1]]></execution_type>
+	<importance><![CDATA[2]]></importance>
+	<estimated_exec_duration></estimated_exec_duration>
+	<status>1</status>
+	<is_open>1</is_open>
+	<active>1</active>
+<steps>
+<step>
+	<step_number><![CDATA[1]]></step_number>
+	<actions><![CDATA[<table>
+	<tbody>
+		<tr>
+			<td>
+			<table>
+				<tbody>
+					<tr>
+						<td>
+						<p>Отправить POST запрос с телом:</p>
+
+						<p>{</p>
+
+						<p>&nbsp;&nbsp;&nbsp; &quot;flightNumber&quot;: &quot;O55PC99&quot;,</p>
+
+						<p>&nbsp;&nbsp;&nbsp; &quot;departureAirportCode&quot;: &quot;LED&quot;,</p>
+
+						<p>&nbsp;&nbsp;&nbsp; &quot;destinationAirportCode&quot;: &quot;YALA&quot;,</p>
+
+						<p>&nbsp;&nbsp;&nbsp;&quot;departureTime&quot;: &quot;10:55:46&quot;,</p>
+
+						<p>&nbsp;&nbsp;&nbsp; &quot;arrivalTime&quot;: &quot;18:34:28&quot;,</p>
+
+						<p>&nbsp;&nbsp;&nbsp; &quot;gate&quot;: &quot;5&quot;,</p>
+
+						<p>&nbsp;&nbsp;&nbsp; &quot;status&quot;: &quot;GATE CLOSED&quot;,</p>
+
+						<p>&nbsp;&nbsp;&nbsp; &quot;flightCharge&quot;: 325000,</p>
+
+						<p>&nbsp;&nbsp;&nbsp; &quot;aircraftId&quot;: 1</p>
+
+						<p>}</p>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+			</td>
+		</tr>
+	</tbody>
+</table>
+]]></actions>
+	<expectedresults><![CDATA[<p>Code 500</p>
+
+<p>Рейс не создан</p>
+
+<p>{</p>
+
+<p>&nbsp;&nbsp;&nbsp; &quot;timestamp&quot;: &quot;2025-01-12 12:43:35:685944565 +0000&quot;,</p>
+
+<p>&nbsp;&nbsp;&nbsp; &quot;status&quot;: &quot;500 INTERNAL_SERVER_ERROR&quot;,</p>
+
+<p>&nbsp;&nbsp;&nbsp; &quot;message&quot;: &quot;Server Error&quot;,</p>
+
+<p>&nbsp;&nbsp;&nbsp; &quot;details&quot;: [</p>
+
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &quot;Cannot invoke \&quot;java.time.LocalDate.isBefore(java.time.chrono.ChronoLocalDate)\&quot; because the return value of \&quot;com.aerotravel.flightticketbooking.model.dto.FlightDto.getArrivalDate()\&quot; is null&quot;</p>
+
+<p>&nbsp;&nbsp;&nbsp; ]</p>
+
+<p>}</p>
+]]></expectedresults>
+	<execution_type><![CDATA[1]]></execution_type>
+</step>
+</steps>
+</testcase>
+
+<testcase internalid="1658" name="API-Рейс-Создание рейса с некорректным форматом времени">
+	<node_order><![CDATA[1002]]></node_order>
+	<externalid><![CDATA[57]]></externalid>
+	<fullexternalid><![CDATA[FTB-57]]></fullexternalid>
+	<version><![CDATA[2]]></version>
+	<summary><![CDATA[<p>Проверка возможности создания нового рейса с некорректным форматом времени (departureTime, arrivalTime) остальные поля заполнены корректно.</p>
+]]></summary>
+	<preconditions><![CDATA[<p>1. Предусловия смотри в suite;</p>
+
+<p>2. БД должна содержать хотя бы 2 записи в таблице airport, одну запись в таблице aircraft.</p>
+]]></preconditions>
+	<execution_type><![CDATA[1]]></execution_type>
+	<importance><![CDATA[3]]></importance>
+	<estimated_exec_duration></estimated_exec_duration>
+	<status>1</status>
+	<is_open>1</is_open>
+	<active>1</active>
+<steps>
+<step>
+	<step_number><![CDATA[1]]></step_number>
+	<actions><![CDATA[<p>Отправить POST запрос с телом:</p>
+
+<p>{<br />
+&nbsp; &nbsp; &quot;flightNumber&quot;: &quot;O55PC99&quot;,<br />
+&nbsp; &nbsp; &quot;departureAirportCode&quot;: &quot;LED&quot;,<br />
+&nbsp; &nbsp; &quot;destinationAirportCode&quot;: &quot;YALA&quot;,<br />
+&nbsp; &nbsp; &quot;departureDate&quot;: &quot;2025-03-10&quot;,<br />
+&nbsp; &nbsp; &quot;arrivalDate&quot;: &quot;2025-03-11&quot;,<br />
+&nbsp; &nbsp; &quot;departureTime&quot;: &quot;67.39.24&quot;,<br />
+&nbsp; &nbsp; &quot;arrivalTime&quot;: &quot;27.58.89&quot;,<br />
+&nbsp; &nbsp; &quot;gate&quot;: &quot;5&quot;,<br />
+&nbsp; &nbsp; &quot;status&quot;: &quot;GATE CLOSED&quot;,<br />
+&nbsp; &nbsp; &quot;flightCharge&quot;: 325000,<br />
+&nbsp; &nbsp; &quot;aircraftId&quot;: 1<br />
+}</p>
+]]></actions>
+	<expectedresults><![CDATA[<p>Code 400</p>
+
+<p>Рейс не создан</p>
+
+<p>{</p>
+
+<p>&nbsp;&nbsp;&nbsp; &quot;timestamp&quot;: &quot;2025-01-13 08:39:45:778903617 +0000&quot;,</p>
+
+<p>&nbsp;&nbsp;&nbsp; &quot;status&quot;: &quot;400 BAD_REQUEST - BAD, BAD REQUEST&quot;,</p>
+
+<p>&nbsp;&nbsp;&nbsp; &quot;message&quot;: &quot;Validation Failed&quot;,</p>
+
+<p>&nbsp;&nbsp;&nbsp; &quot;details&quot;: [</p>
+
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &quot; departureTime | must be in the correct format &quot;,</p>
+
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &quot; arrivalTime | must be in the correct format }</p>
+]]></expectedresults>
+	<execution_type><![CDATA[1]]></execution_type>
+</step>
+</steps>
+</testcase>
+
+<testcase internalid="1662" name="API-Рейс-Создание рейса с дополнительными параметрами">
+	<node_order><![CDATA[1003]]></node_order>
+	<externalid><![CDATA[58]]></externalid>
+	<fullexternalid><![CDATA[FTB-58]]></fullexternalid>
+	<version><![CDATA[1]]></version>
+	<summary><![CDATA[<p>Проверка возможности создания нового рейса с дополнительным параметром в теле запроса, остальные параметры заполнены корректно.</p>
+]]></summary>
+	<preconditions><![CDATA[<p>1. Предусловия смотри в suite;</p>
+
+<p>2. БД должна содержать хотя бы 2 записи в таблице airport, одну запись в таблице aircraft.</p>
+]]></preconditions>
+	<execution_type><![CDATA[1]]></execution_type>
+	<importance><![CDATA[2]]></importance>
+	<estimated_exec_duration></estimated_exec_duration>
+	<status>7</status>
+	<is_open>1</is_open>
+	<active>1</active>
+<steps>
+<step>
+	<step_number><![CDATA[1]]></step_number>
+	<actions><![CDATA[<p>Отправить POST запрос с телом:</p>
+
+<p>{<br />
+&nbsp; &nbsp; &quot;flightNumber&quot;: &quot;R76&quot;,<br />
+&nbsp; &nbsp; &quot;departureAirportCode&quot;: &quot;LED&quot;,<br />
+&nbsp; &nbsp; &quot;destinationAirportCode&quot;: &quot;YALA&quot;,<br />
+&nbsp; &nbsp; &quot;departureDate&quot;: &quot;2025-03-10&quot;,<br />
+&nbsp; &nbsp; &quot;arrivalDate&quot;: &quot;2025-03-11&quot;,<br />
+&nbsp; &nbsp; &quot;departureTime&quot;: &quot;07:18:38&quot;,<br />
+&nbsp; &nbsp; &quot;arrivalTime&quot;: &quot;10:34:59&quot;,<br />
+&nbsp; &nbsp; &quot;gate&quot;: &quot;5&quot;,<br />
+&nbsp; &nbsp; &quot;status&quot;: &quot;open&quot;,<br />
+&nbsp; &nbsp; &quot;flightCharge&quot;: 3250.00,<br />
+&nbsp; &nbsp; &quot;aircraftId&quot;: 1,<br />
+&nbsp; &nbsp; &quot;passengerIds&quot;: 2<br />
+}</p>
+]]></actions>
+	<expectedresults><![CDATA[<p>Code 400</p>
+
+<p>Рейс не создан</p>
+]]></expectedresults>
+	<execution_type><![CDATA[1]]></execution_type>
+</step>
+</steps>
+</testcase>
+
+<testcase internalid="1665" name="API-Рейс-Создание рейса с обязательным параметром БД flightCharge">
+	<node_order><![CDATA[1004]]></node_order>
+	<externalid><![CDATA[59]]></externalid>
+	<fullexternalid><![CDATA[FTB-59]]></fullexternalid>
+	<version><![CDATA[2]]></version>
+	<summary><![CDATA[<p>Проверка возможности создания рейса с пустыми полями и заполненным полем&nbsp;flightCharge.</p>
+]]></summary>
+	<preconditions><![CDATA[<p>1. Предусловия смотри в suite.</p>
+]]></preconditions>
+	<execution_type><![CDATA[1]]></execution_type>
+	<importance><![CDATA[3]]></importance>
+	<estimated_exec_duration></estimated_exec_duration>
+	<status>1</status>
+	<is_open>1</is_open>
+	<active>1</active>
+<steps>
+<step>
+	<step_number><![CDATA[1]]></step_number>
+	<actions><![CDATA[<p>Отправить POST запрос с телом:</p>
+
+<p>{<br />
+&nbsp; &nbsp; &quot;flightNumber&quot;: &quot;null&quot;,<br />
+&nbsp; &nbsp; &quot;departureAirportCode&quot;: &quot;null&quot;,<br />
+&nbsp; &nbsp; &quot;destinationAirportCode&quot;: &quot;null&quot;,<br />
+&nbsp; &nbsp; &quot;departureDate&quot;: &quot;null&quot;,<br />
+&nbsp; &nbsp; &quot;arrivalDate&quot;: &quot;null&quot;,<br />
+&nbsp; &nbsp; &quot;departureTime&quot;: &quot;null&quot;,<br />
+&nbsp; &nbsp; &quot;arrivalTime&quot;: &quot;null&quot;,<br />
+&nbsp; &nbsp; &quot;gate&quot;: &quot;null&quot;,<br />
+&nbsp; &nbsp; &quot;status&quot;: &quot;null&quot;,<br />
+&nbsp; &nbsp; &quot;flightCharge&quot;: 18590,<br />
+&nbsp; &nbsp; &quot;aircraftId&quot;: null<br />
+}</p>
+]]></actions>
+	<expectedresults><![CDATA[<p>Code 400</p>
+
+<p>Рейс не создан</p>
+
+<p>{</p>
+
+<p>&nbsp;&nbsp;&nbsp; &quot;timestamp&quot;: &quot;2025-01-12 12:35:19:197104608 +0000&quot;,</p>
+
+<p>&nbsp;&nbsp;&nbsp; &quot;status&quot;: &quot;400 BAD_REQUEST - BAD, BAD REQUEST&quot;,</p>
+
+<p>&nbsp;&nbsp;&nbsp; &quot;message&quot;: &quot;Validation Failed&quot;,</p>
+
+<p>&nbsp;&nbsp;&nbsp; &quot;details&quot;: [</p>
+
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &quot;flightNumber | must not be blank&quot;,</p>
+
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &quot;departureTime | must not be blank&quot;,</p>
+
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &quot;departureAirportCode | must not be blank&quot;,</p>
+
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &quot;arrivalTime | must not be blank&quot;,</p>
+
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &quot;destinationAirportCode | must not be blank&quot;</p>
+
+<p>&nbsp;&nbsp;&nbsp; ]</p>
+
+<p>}</p>
+]]></expectedresults>
+	<execution_type><![CDATA[1]]></execution_type>
+</step>
+</steps>
+</testcase>
+</testsuite><testsuite id="1987" name="Integration tests" >
+<node_order><![CDATA[2]]></node_order>
+<details><![CDATA[<p>1. Авторизация выполняется под логином и паролем администратора:</p>
+
+<p>логин:john</p>
+
+<p>пароль:john123</p>
+
+<p>2. URL:</p>
+
+<p>http://192.168.40.100:8{UID}/aircrafts</p>
+
+<p>3. Настроен&nbsp;доступ к таблице aircraft&nbsp;в БД;</p>
+
+<p>4. Настроен доступ к Google spreadsheets.</p>
+
+<p>&nbsp;</p>
+]]></details> 
+
+<testcase internalid="1988" name="Integr-UI-Aircrafts-Импорт самолетов с корректными данными из google spreadsheets (CSV)">
+	<node_order><![CDATA[1000]]></node_order>
+	<externalid><![CDATA[114]]></externalid>
+	<fullexternalid><![CDATA[FTB-114]]></fullexternalid>
+	<version><![CDATA[1]]></version>
+	<summary><![CDATA[<p>Проверить, что файл&nbsp;CSV, созданный&nbsp;в&nbsp;google spreadsheets, успешно импортируется в таблицу aircraft БД&nbsp;и отображается на странице Aircrafts приложения FTB.</p>
+]]></summary>
+	<preconditions><![CDATA[]]></preconditions>
+	<execution_type><![CDATA[1]]></execution_type>
+	<importance><![CDATA[3]]></importance>
+	<estimated_exec_duration></estimated_exec_duration>
+	<status>7</status>
+	<is_open>1</is_open>
+	<active>1</active>
+<steps>
+<step>
+	<step_number><![CDATA[1]]></step_number>
+	<actions><![CDATA[<p>Создать таблицу в&nbsp;google spreadsheets, содержащую строки:</p>
+
+<p>Manufacturer,&nbsp;Model,&nbsp;Number of seats. Заполнить таблицу корректными данными, пример:</p>
+
+<table border="1" cellpadding="1" cellspacing="1" style="width:100%">
+	<tbody>
+		<tr>
+			<td>Manufacturer</td>
+			<td>Model</td>
+			<td>Number of seats</td>
+		</tr>
+		<tr>
+			<td>AB</td>
+			<td>A-678</td>
+			<td>45</td>
+		</tr>
+		<tr>
+			<td>NM</td>
+			<td>N-404</td>
+			<td>5</td>
+		</tr>
+	</tbody>
+</table>
+
+<p>&nbsp;</p>
+]]></actions>
+	<expectedresults><![CDATA[]]></expectedresults>
+	<execution_type><![CDATA[1]]></execution_type>
+</step>
+
+<step>
+	<step_number><![CDATA[2]]></step_number>
+	<actions><![CDATA[<p>Сохранить файл в формате CSV (Файл-&gt;Скачать-&gt;Формат CSV)</p>
+
+<p>Пример CSV файла прикреплен к тест-кейсу.</p>
+]]></actions>
+	<expectedresults><![CDATA[<p>Файл формата CSV сохранен на локальном компьютере.</p>
+]]></expectedresults>
+	<execution_type><![CDATA[1]]></execution_type>
+</step>
+
+<step>
+	<step_number><![CDATA[3]]></step_number>
+	<actions><![CDATA[<p>На странице Aircrafts приложения FTB нажать выберете файл для импорта CSV файла.</p>
+]]></actions>
+	<expectedresults><![CDATA[]]></expectedresults>
+	<execution_type><![CDATA[1]]></execution_type>
+</step>
+
+<step>
+	<step_number><![CDATA[4]]></step_number>
+	<actions><![CDATA[<p>Выбрать файл CSV, сохраненный на локальном компьютере (шаг 2)</p>
+]]></actions>
+	<expectedresults><![CDATA[]]></expectedresults>
+	<execution_type><![CDATA[1]]></execution_type>
+</step>
+
+<step>
+	<step_number><![CDATA[5]]></step_number>
+	<actions><![CDATA[<p>Нажать на кнопку &quot;Import data&quot;</p>
+]]></actions>
+	<expectedresults><![CDATA[<p>1. На UI появилась таблица Importing result с перечислением импортируемых самолетов и данными о них (в примере два);</p>
+
+<p>2. В таблице Aircrafts List на UI отобразились импортированные самолеты с данными;</p>
+
+<p>3. В таблице aircraft БД появились новые записи о самолетах.</p>
+
+<p>&nbsp;</p>
+]]></expectedresults>
+	<execution_type><![CDATA[1]]></execution_type>
+</step>
+</steps>
+</testcase>
+
+<testcase internalid="2012" name="Integr-UI-Aircrafts-Импорт самолета с отсутствующим столбцом Number of seats из google spreadsheets">
+	<node_order><![CDATA[1001]]></node_order>
+	<externalid><![CDATA[118]]></externalid>
+	<fullexternalid><![CDATA[FTB-118]]></fullexternalid>
+	<version><![CDATA[1]]></version>
+	<summary><![CDATA[<p>Проверить, что файл&nbsp;CSV, созданный&nbsp;в&nbsp;google spreadsheets, содержащий неполные данные (отстутствует столбец&nbsp;Number of seats) невозможно&nbsp;импортировать&nbsp;на странице Aircrafts приложения FTB.</p>
+
+<p>&nbsp;</p>
+]]></summary>
+	<preconditions><![CDATA[]]></preconditions>
+	<execution_type><![CDATA[1]]></execution_type>
+	<importance><![CDATA[3]]></importance>
+	<estimated_exec_duration></estimated_exec_duration>
+	<status>7</status>
+	<is_open>1</is_open>
+	<active>1</active>
+<steps>
+<step>
+	<step_number><![CDATA[1]]></step_number>
+	<actions><![CDATA[<p>Создать таблицу в&nbsp;google spreadsheets, содержащую строки: Manufacturer,&nbsp;Model. Заполнить таблицу корректными данными, пример:</p>
+
+<table border="1" cellpadding="1" cellspacing="1" style="width:100%">
+	<tbody>
+		<tr>
+			<td>Manufacturer</td>
+			<td>Model</td>
+		</tr>
+		<tr>
+			<td>AB</td>
+			<td>A-678</td>
+		</tr>
+		<tr>
+			<td>NM</td>
+			<td>N-404</td>
+		</tr>
+	</tbody>
+</table>
+
+<p>&nbsp;</p>
+]]></actions>
+	<expectedresults><![CDATA[]]></expectedresults>
+	<execution_type><![CDATA[1]]></execution_type>
+</step>
+
+<step>
+	<step_number><![CDATA[2]]></step_number>
+	<actions><![CDATA[<p>Сохранить файл в формате CSV (Файл-&gt;Скачать-&gt;Формат CSV)</p>
+
+<p>Пример CSV файла прикреплен к тест-кейсу.</p>
+]]></actions>
+	<expectedresults><![CDATA[<p>Файл формата CSV сохранен на локальном компьютере.</p>
+]]></expectedresults>
+	<execution_type><![CDATA[1]]></execution_type>
+</step>
+
+<step>
+	<step_number><![CDATA[3]]></step_number>
+	<actions><![CDATA[<table>
+	<tbody>
+		<tr>
+			<td>
+			<p>На странице Aircrafts приложения FTB нажать выберете файл для импорта CSV файла.</p>
+			</td>
+		</tr>
+	</tbody>
+</table>
+]]></actions>
+	<expectedresults><![CDATA[]]></expectedresults>
+	<execution_type><![CDATA[1]]></execution_type>
+</step>
+
+<step>
+	<step_number><![CDATA[4]]></step_number>
+	<actions><![CDATA[<p>Выбрать файл CSV, сохраненный на локальном компьютере (шаг 2)</p>
+]]></actions>
+	<expectedresults><![CDATA[]]></expectedresults>
+	<execution_type><![CDATA[1]]></execution_type>
+</step>
+
+<step>
+	<step_number><![CDATA[5]]></step_number>
+	<actions><![CDATA[<table>
+	<tbody>
+		<tr>
+			<td>
+			<p>Нажать на кнопку &quot;Import data&quot;</p>
+			</td>
+		</tr>
+	</tbody>
+</table>
+]]></actions>
+	<expectedresults><![CDATA[<table>
+	<tbody>
+		<tr>
+			<td>
+			<p>1. На UI появилась таблица Importing result содержащая сообщение о том, что в импортируемом CSV файле неполные данные - отсутствует столбец Number of seats;</p>
+
+			<p>2. В таблице Aircrafts List на UI не отображаются&nbsp;импортированные самолеты с данными;</p>
+
+			<p>3. В таблице aircraft БД не отображаются&nbsp;новые записи о самолетах.</p>
+			</td>
+		</tr>
+	</tbody>
+</table>
+]]></expectedresults>
+	<execution_type><![CDATA[1]]></execution_type>
+</step>
+</steps>
+</testcase>
+
+<testcase internalid="2019" name="Integr-UI-Aircrafts-Импорт самолетов с некорректными данными Number of seats из google spreadsheets">
+	<node_order><![CDATA[1002]]></node_order>
+	<externalid><![CDATA[119]]></externalid>
+	<fullexternalid><![CDATA[FTB-119]]></fullexternalid>
+	<version><![CDATA[1]]></version>
+	<summary><![CDATA[<p>Проверить, что файл&nbsp;CSV, созданный&nbsp;в&nbsp;google spreadsheets, содержащий некорректные данные&nbsp;Number of seats&nbsp;невозможно&nbsp;импортировать&nbsp;на странице Aircrafts приложения FTB.</p>
+]]></summary>
+	<preconditions><![CDATA[]]></preconditions>
+	<execution_type><![CDATA[1]]></execution_type>
+	<importance><![CDATA[2]]></importance>
+	<estimated_exec_duration></estimated_exec_duration>
+	<status>7</status>
+	<is_open>1</is_open>
+	<active>1</active>
+<steps>
+<step>
+	<step_number><![CDATA[1]]></step_number>
+	<actions><![CDATA[<p>Создать таблицу в&nbsp;google spreadsheets, содержащую строки: Manufacturer,&nbsp;Model,&nbsp;Number of seats. Заполнить значения полей в столбцах&nbsp;Manufacturer,&nbsp;Model&nbsp;корректными данными, в столбце&nbsp;Number of seats текстовыми - некорректными,&nbsp;пример:</p>
+
+<table border="1" cellpadding="1" cellspacing="1" style="width:100%">
+	<tbody>
+		<tr>
+			<td>Manufacturer</td>
+			<td>Model</td>
+			<td>Number of seats</td>
+		</tr>
+		<tr>
+			<td>AB</td>
+			<td>A-678</td>
+			<td>
+			<p>forty five</p>
+			</td>
+		</tr>
+		<tr>
+			<td>NM</td>
+			<td>N-404</td>
+			<td>
+			<p>five</p>
+			</td>
+		</tr>
+	</tbody>
+</table>
+
+<p>&nbsp;</p>
+]]></actions>
+	<expectedresults><![CDATA[]]></expectedresults>
+	<execution_type><![CDATA[1]]></execution_type>
+</step>
+
+<step>
+	<step_number><![CDATA[2]]></step_number>
+	<actions><![CDATA[<p>Сохранить файл в формате CSV (Файл-&gt;Скачать-&gt;Формат CSV)</p>
+
+<p>Пример CSV файла прикреплен к тест-кейсу.</p>
+]]></actions>
+	<expectedresults><![CDATA[<p>Файл формата CSV сохранен на локальном компьютере.</p>
+]]></expectedresults>
+	<execution_type><![CDATA[1]]></execution_type>
+</step>
+
+<step>
+	<step_number><![CDATA[3]]></step_number>
+	<actions><![CDATA[<table>
+	<tbody>
+		<tr>
+			<td>
+			<p>На странице Aircrafts приложения FTB нажать выберете файл для импорта CSV файла.</p>
+			</td>
+		</tr>
+	</tbody>
+</table>
+]]></actions>
+	<expectedresults><![CDATA[]]></expectedresults>
+	<execution_type><![CDATA[1]]></execution_type>
+</step>
+
+<step>
+	<step_number><![CDATA[4]]></step_number>
+	<actions><![CDATA[<table>
+	<tbody>
+		<tr>
+			<td>
+			<p>Выбрать файл CSV, сохраненный на локальном компьютере (шаг 2)</p>
+			</td>
+		</tr>
+	</tbody>
+</table>
+]]></actions>
+	<expectedresults><![CDATA[]]></expectedresults>
+	<execution_type><![CDATA[1]]></execution_type>
+</step>
+
+<step>
+	<step_number><![CDATA[5]]></step_number>
+	<actions><![CDATA[<table>
+	<tbody>
+		<tr>
+			<td>
+			<p>Нажать на кнопку &quot;Import data&quot;</p>
+			</td>
+		</tr>
+	</tbody>
+</table>
+]]></actions>
+	<expectedresults><![CDATA[<p>1. На UI появилась таблица Importing result содержащая сообщение о том, что в импортируемом CSV файле некорректный формат&nbsp;данных&nbsp; поля&nbsp;Number of seats;</p>
+
+<p>2. В таблице Aircrafts List на UI не отображаются&nbsp;импортированные самолеты с данными;</p>
+
+<p>3. В таблице aircraft БД не отображаются&nbsp;новые записи о самолетах.</p>
+]]></expectedresults>
+	<execution_type><![CDATA[1]]></execution_type>
+</step>
+</steps>
+</testcase>
+</testsuite><testsuite id="2255" name="BLACK/GREY Aircrafts List" >
+<node_order><![CDATA[3]]></node_order>
+<details><![CDATA[]]></details> 
+
+<testcase internalid="2256" name="UI-Aircrafts-Работа кнопки &quot;Delete&quot; для удаления самолета">
+	<node_order><![CDATA[1000]]></node_order>
+	<externalid><![CDATA[156]]></externalid>
+	<fullexternalid><![CDATA[FTB-156]]></fullexternalid>
+	<version><![CDATA[1]]></version>
+	<summary><![CDATA[<p>Проверить, что нажатие кнопки &quot;Delete&quot; появится всплывающее окно с уведомлением об удалении самолета.</p>
+]]></summary>
+	<preconditions><![CDATA[<p>1. Приложение FTB открыто в Яндекс браузере;</p>
+
+<p>2. Выполнена авторизация в приложении FTB с правами администратора (логин: john; пароль:john123);</p>
+
+<p>3. Открыта страница Aircrafts List, содержащая хотябы одну запись;</p>
+
+<p>4. У каждой записи в таблице&nbsp;Aircrafts List есть кнопка &quot;Delete&quot;.</p>
+]]></preconditions>
+	<execution_type><![CDATA[1]]></execution_type>
+	<importance><![CDATA[3]]></importance>
+	<estimated_exec_duration></estimated_exec_duration>
+	<status>1</status>
+	<is_open>1</is_open>
+	<active>1</active>
+<steps>
+<step>
+	<step_number><![CDATA[1]]></step_number>
+	<actions><![CDATA[<p>Выбрать строку самолета в таблице Aircrafts List, запомнить/записать ID выбранного самолета</p>
+]]></actions>
+	<expectedresults><![CDATA[]]></expectedresults>
+	<execution_type><![CDATA[1]]></execution_type>
+</step>
+
+<step>
+	<step_number><![CDATA[2]]></step_number>
+	<actions><![CDATA[<p>В приложении FTB нажать на кнопку &quot;Delete&quot; в&nbsp;строке выбранного самолета таблицы Aircrafts List</p>
+]]></actions>
+	<expectedresults><![CDATA[<p>Отображается окно с предупреждением об удалении &quot;Are you sure you want to delete?&quot;</p>
+]]></expectedresults>
+	<execution_type><![CDATA[1]]></execution_type>
+</step>
+</steps>
+</testcase>
+
+<testcase internalid="2261" name="API-Aircrafts-DELETE-Удаление самолета и проверка изменения отображения в БД и UI">
+	<node_order><![CDATA[1001]]></node_order>
+	<externalid><![CDATA[157]]></externalid>
+	<fullexternalid><![CDATA[FTB-157]]></fullexternalid>
+	<version><![CDATA[1]]></version>
+	<summary><![CDATA[<p>Проверить, что удаленные с помощью API (методом DELETE) самолеты не отображаются в БД и на UI.&nbsp;&nbsp;</p>
+]]></summary>
+	<preconditions><![CDATA[<p>1. Приложение FTB открыто в Яндекс браузере;</p>
+
+<p>2. Выполнена авторизация в приложении FTB с правами администратора (логин: john; пароль:john123);</p>
+
+<p>3. Настроен доступ к таблице aircraft в БД, таблица&nbsp;aircraft содержит хотябы одну запись;</p>
+
+<p>4. Открыта страница Aircrafts List, содержащая хотябы одну запись;</p>
+
+<p>5. Настроен&nbsp;метод&nbsp;DELETE&nbsp; в Postman&nbsp;http://192.168.40.100:8{UID}/api/v0/aircrafts/{id}</p>
+]]></preconditions>
+	<execution_type><![CDATA[1]]></execution_type>
+	<importance><![CDATA[3]]></importance>
+	<estimated_exec_duration></estimated_exec_duration>
+	<status>1</status>
+	<is_open>1</is_open>
+	<active>1</active>
+<steps>
+<step>
+	<step_number><![CDATA[1]]></step_number>
+	<actions><![CDATA[<table>
+	<tbody>
+		<tr>
+			<td>
+			<p>Выбрать строку самолета в таблице Aircrafts List, запомнить/записать ID выбранного самолета (далее ID_вс)</p>
+			</td>
+		</tr>
+	</tbody>
+</table>
+]]></actions>
+	<expectedresults><![CDATA[]]></expectedresults>
+	<execution_type><![CDATA[1]]></execution_type>
+</step>
+
+<step>
+	<step_number><![CDATA[2]]></step_number>
+	<actions><![CDATA[<p>Убедиться, что выбранный самолет отображается в БД, выполнив команду:</p>
+
+<p>select * from aircraft a where a.aircraft_id = &lt;ID_вс&gt;</p>
+
+<p>&nbsp;</p>
+]]></actions>
+	<expectedresults><![CDATA[<p>Получены данные выбранного самолета</p>
+
+<table border="1" cellpadding="1" cellspacing="1" style="width:100%">
+	<tbody>
+		<tr>
+			<td>aircraft_id</td>
+			<td>manufacturer</td>
+			<td>model</td>
+			<td>number_of_seats</td>
+		</tr>
+		<tr>
+			<td>&lt;ID_вс&gt;</td>
+			<td>&lt;manufacturer&gt;</td>
+			<td>&lt;model&gt;</td>
+			<td>&lt;number_of_seats&gt;</td>
+		</tr>
+	</tbody>
+</table>
+
+<p>&nbsp;</p>
+]]></expectedresults>
+	<execution_type><![CDATA[1]]></execution_type>
+</step>
+
+<step>
+	<step_number><![CDATA[3]]></step_number>
+	<actions><![CDATA[<p>В Postman отправить DELETE запрос:</p>
+
+<p>http://192.168.40.100:8168/api/v0/aircrafts/&lt;ID_вс&gt;</p>
+]]></actions>
+	<expectedresults><![CDATA[<p>Код ответа: 200 ОК</p>
+
+<p>Ответ в формате JSON:</p>
+
+<p>{</p>
+
+<p>&nbsp; &nbsp; &quot;code&quot;: 200,</p>
+
+<p>&nbsp; &nbsp; &quot;message&quot;: &quot;Deleted Aircraft by Id=&lt;ID_вс&gt;&quot;,</p>
+
+<p>&nbsp; &nbsp; &quot;details&quot;: {</p>
+
+<p>&nbsp; &nbsp; &nbsp; &nbsp; &quot;Id&quot;: &quot;&lt;ID_вс&gt;&quot;</p>
+
+<p>&nbsp; &nbsp; }</p>
+
+<p>}</p>
+]]></expectedresults>
+	<execution_type><![CDATA[1]]></execution_type>
+</step>
+
+<step>
+	<step_number><![CDATA[4]]></step_number>
+	<actions><![CDATA[<p>Обновить страницу Aircrafts приложения FTB</p>
+]]></actions>
+	<expectedresults><![CDATA[<p>Самолет с ID_вс не отображается в таблице Aircrafts List</p>
+]]></expectedresults>
+	<execution_type><![CDATA[1]]></execution_type>
+</step>
+
+<step>
+	<step_number><![CDATA[5]]></step_number>
+	<actions><![CDATA[<p>Убедиться, что удаленный самолет не отображается в БД, выполнив команду:</p>
+
+<p>&nbsp;select * from aircraft a where a.aircraft_id = &lt;ID_вс&gt;</p>
+]]></actions>
+	<expectedresults><![CDATA[<p>Получена пустая строка&nbsp;</p>
+
+<table border="1" cellpadding="1" cellspacing="1" style="width:100%">
+	<tbody>
+		<tr>
+			<td>aircraft_id</td>
+			<td>manufacturer</td>
+			<td>model</td>
+			<td>number_of_seats</td>
+		</tr>
+		<tr>
+			<td>&nbsp;</td>
+			<td>&nbsp;</td>
+			<td>&nbsp;</td>
+			<td>&nbsp;</td>
+		</tr>
+	</tbody>
+</table>
+
+<p>&nbsp;</p>
+]]></expectedresults>
+	<execution_type><![CDATA[1]]></execution_type>
+</step>
+</steps>
+</testcase>
+</testsuite><testsuite id="2387" name="FTB-Airports-GET" >
+<node_order><![CDATA[4]]></node_order>
+<details><![CDATA[]]></details> 
+
+<testcase internalid="2388" name="API-GET-Airports-Отображение аэропорта с &quot;Airport Code&quot;  на кирил. и остальными параметрами с пробел">
+	<node_order><![CDATA[1000]]></node_order>
+	<externalid><![CDATA[180]]></externalid>
+	<fullexternalid><![CDATA[FTB-180]]></fullexternalid>
+	<version><![CDATA[1]]></version>
+	<summary><![CDATA[<p>Проверить, что созданный&nbsp;в БД аэропорт с&nbsp;&quot;Airport Code&quot; &nbsp;на кириллице&nbsp;и остальными параметрами с пробелами успешно отображается при выполнении запроса GET&nbsp;/api/v0/airports.</p>
+]]></summary>
+	<preconditions><![CDATA[<p>1) Настроен&nbsp;доступ к БД, в&nbsp;БД существует таблица airport;</p>
+
+<p>2) Настроен и открыт Postman для отправки GET-запроса&nbsp;http://192.168.40.100:8{UID}/api/v0/airports&nbsp;через API</p>
+
+<p>(данные для авторизации - логин: john, пароль: john123);</p>
+
+<p>&nbsp;</p>
+]]></preconditions>
+	<execution_type><![CDATA[1]]></execution_type>
+	<importance><![CDATA[2]]></importance>
+	<estimated_exec_duration></estimated_exec_duration>
+	<status>1</status>
+	<is_open>1</is_open>
+	<active>1</active>
+<steps>
+<step>
+	<step_number><![CDATA[1]]></step_number>
+	<actions><![CDATA[<p>Создать в БД аэропорт с&nbsp;&quot;Airport Code&quot; &nbsp;на кириллице&nbsp;и остальными параметрами с пробелами.</p>
+
+<p>Пример:</p>
+
+<p>insert into airport (airport_code, airport_name, city, country, state) values (&quot;АУМ&quot;, &quot;Auto YM&quot;, &quot;Ek bg&quot;, &quot;B olg&quot;, &quot;Ekl bg&quot;)</p>
+]]></actions>
+	<expectedresults><![CDATA[<p>Получено сообщение от БД об успешном создании нового аэропорта</p>
+]]></expectedresults>
+	<execution_type><![CDATA[1]]></execution_type>
+</step>
+
+<step>
+	<step_number><![CDATA[2]]></step_number>
+	<actions><![CDATA[<p>Узнать &quot;airport_id&quot; созданного на шаге 1 самолета</p>
+
+<p>Пример:</p>
+
+<p>select * from airport where airport_code = &quot;АУМ&quot;</p>
+]]></actions>
+	<expectedresults><![CDATA[<p>Получена таблица с данными созданного аэропрта вида:</p>
+
+<table border="1" cellpadding="1" cellspacing="1" style="width:100%">
+	<tbody>
+		<tr>
+			<td>airport_id</td>
+			<td>airport_code</td>
+			<td>airport_name</td>
+			<td>city</td>
+			<td>country</td>
+			<td>state</td>
+		</tr>
+		<tr>
+			<td>&lt;a_id&gt;</td>
+			<td>АУМ</td>
+			<td>Auto YM</td>
+			<td>Ek bg</td>
+			<td>B olg</td>
+			<td>Ekl bg</td>
+		</tr>
+	</tbody>
+</table>
+
+<p>&nbsp;</p>
+]]></expectedresults>
+	<execution_type><![CDATA[1]]></execution_type>
+</step>
+
+<step>
+	<step_number><![CDATA[3]]></step_number>
+	<actions><![CDATA[<p>Отправить GET-запрос в Postman</p>
+]]></actions>
+	<expectedresults><![CDATA[<p>Code 200 OK</p>
+
+<p>Тело ответа в формате json:</p>
+
+<p>[</p>
+
+<p>{</p>
+
+<p>аэропорты до созданного на шаге 1</p>
+
+<p>},</p>
+
+<p>.......</p>
+
+<p>&nbsp; &nbsp; {</p>
+
+<p>&nbsp; &nbsp; &nbsp; &nbsp; &quot;airportId&quot;: &lt;a_id&gt;,</p>
+
+<p>&nbsp; &nbsp; &nbsp; &nbsp; &quot;airportCode&quot;: &quot;АУМ&quot;,</p>
+
+<p>&nbsp; &nbsp; &nbsp; &nbsp; &quot;airportName&quot;: &quot;Auto YM&quot;,</p>
+
+<p>&nbsp; &nbsp; &nbsp; &nbsp; &quot;city&quot;: &quot;Ek bg&quot;,</p>
+
+<p>&nbsp; &nbsp; &nbsp; &nbsp; &quot;state&quot;: &quot;Ekl bg&quot;,</p>
+
+<p>&nbsp; &nbsp; &nbsp; &nbsp; &quot;country&quot;: &quot;B olg&quot;,</p>
+
+<p>&nbsp; &nbsp; &nbsp; &nbsp; &quot;flightIds&quot;: [],</p>
+
+<p>&nbsp; &nbsp; &nbsp; &nbsp; &quot;id&quot;: &lt;a_id&gt;</p>
+
+<p>&nbsp; &nbsp; },</p>
+
+<p>{</p>
+
+<p>аэропорты после&nbsp;созданного на шаге 1</p>
+
+<p>}</p>
+
+<p>]</p>
+
+<p>&nbsp;</p>
+
+<p>&nbsp;</p>
+
+<p>Дополнение: аэропортов&nbsp;до и после созданного может не быть в БД.</p>
+]]></expectedresults>
+	<execution_type><![CDATA[1]]></execution_type>
+</step>
+</steps>
+</testcase>
+</testsuite></testsuite>
